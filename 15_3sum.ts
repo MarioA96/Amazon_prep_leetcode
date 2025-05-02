@@ -18,7 +18,7 @@ const twoSum = (nums:number[], target: number, skipedIndex: number) => {
 
     const len: number = nums.length;
     let sols: number[][] = [[0,0]];
-    let n:number = 0;
+    // let n:number = 0;
     sols.pop();
 
     for (let i = skipedIndex; i<len; i++) {
@@ -29,7 +29,7 @@ const twoSum = (nums:number[], target: number, skipedIndex: number) => {
             if(nums[j]+res===target){
                 let sol = [ nums[i], nums[j] ];
                 sols.push( sol );
-                ++n;
+                // ++n;
             }
         }
     }
@@ -46,15 +46,13 @@ const threeSum = (nums: number[], target: number) => {
 
     for(let i=0; i<len; i++){
         let resSum = nums[i];
-        const sol2Sum: number[][] = twoSum(nums, -resSum, i+1);
+        let sol2Sum: number[][] = twoSum(nums, -resSum, i+1);
+        // console.log(sol2Sum.length);
 
-        if(sol2Sum.length > 0){
+        if(sol2Sum.length !== 0){
             for(let r=0; r<sol2Sum.length; r++){
-                console.log(sol2Sum[r]);
-
-                sols.push([nums[i]]);
-                sols[r].push(sol2Sum[r][0]);
-                sols[r].push(sol2Sum[r][1]);
+                sol2Sum[r].push(resSum);
+                sols.push(sol2Sum[r]);
             }
         }
         else {
@@ -69,9 +67,9 @@ const threeSum = (nums: number[], target: number) => {
 function main(){
     const nums = [-1,0,1,2,-1,-4];
     const target = 0;
-    // const output: number[][] = threeSum(nums, target);
+    // const output: number[][] = twoSum(nums, 1, 1);
     const output: number[][] = threeSum(nums, target);
-    // console.log("Soluciones: ", output);
+    console.log("Soluciones: ", output);
 }
 
 main();
