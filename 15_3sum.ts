@@ -14,37 +14,64 @@
 // The distinct triplets are [-1,0,1] and [-1,-1,2].
 // Notice that the order of the output and the order of the triplets does not matter.
 
-const twoSum = (nums:number[], lenNums:number, index:number, resSum:number) => {
+const twoSum = (nums:number[], target: number, skipedIndex: number) => {
 
-    for(let i=0; i<lenNums; i++){
-        if(){
-            continue;
-        }
-        else {
-            let twoSum = resSum + nums[i];
+    const len: number = nums.length;
+    let sols: number[][] = [[0,0]];
+    let n:number = 0;
+    sols.pop();
+
+    for (let i = skipedIndex; i<len; i++) {
+        let res = nums[i];
+        for(let j = 0; j<len; j++){
+            if(nums[j]===nums[i]) break;
+            
+            if(nums[j]+res===target){
+                let sol = [ nums[i], nums[j] ];
+                sols.push( sol );
+                ++n;
+            }
         }
     }
 
-    return [];
+    return sols;
 }
 
 const threeSum = (nums: number[], target: number) => {
 
-    const lenNums = nums.length;
-    for(let i=0; i<lenNums; i++){
-        let resSum = 0;
-        resSum = target + nums[i];
-        const [j, k] = twoSum(nums, lenNums, i, resSum);
+    const len: number = nums.length;
+    let sols: number[][] = [[0,0]];
+    let n:number = 0;
+    sols.pop();
+
+    for(let i=0; i<len; i++){
+        let resSum = nums[i];
+        const sol2Sum: number[][] = twoSum(nums, -resSum, i+1);
+
+        if(sol2Sum.length > 0){
+            for(let r=0; r<sol2Sum.length; r++){
+                console.log(sol2Sum[r]);
+
+                sols.push([nums[i]]);
+                sols[r].push(sol2Sum[r][0]);
+                sols[r].push(sol2Sum[r][1]);
+            }
+        }
+        else {
+            break;
+        }
     }
 
-    return [[]];
+    return sols;
 }
 
 
 function main(){
     const nums = [-1,0,1,2,-1,-4];
     const target = 0;
+    // const output: number[][] = threeSum(nums, target);
     const output: number[][] = threeSum(nums, target);
+    // console.log("Soluciones: ", output);
 }
 
 main();
