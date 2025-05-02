@@ -37,17 +37,15 @@ const twoSum = (nums:number[], target: number, skipedIndex: number) => {
     return sols;
 }
 
-const threeSum = (nums: number[], target: number) => {
+const threeSum = (nums: number[]): number[][] => {
 
     const len: number = nums.length;
     let sols: number[][] = [[0,0]];
-    let n:number = 0;
     sols.pop();
 
     for(let i=0; i<len; i++){
         let resSum = nums[i];
         let sol2Sum: number[][] = twoSum(nums, -resSum, i+1);
-        // console.log(sol2Sum.length);
 
         if(sol2Sum.length !== 0){
             for(let r=0; r<sol2Sum.length; r++){
@@ -65,10 +63,10 @@ const threeSum = (nums: number[], target: number) => {
 
 
 function main(){
-    const nums = [-1,0,1,2,-1,-4];
+    const nums = [0,1,1];
     const target = 0;
     // const output: number[][] = twoSum(nums, 1, 1);
-    const output: number[][] = threeSum(nums, target);
+    const output: number[][] = threeSum(nums);
     console.log("Soluciones: ", output);
 }
 
