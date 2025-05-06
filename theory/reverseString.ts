@@ -21,10 +21,18 @@ function reverse(str: string){
     return backwards.join('');
 }
 
+function reverse2(str){
+    return str.split('').reverse().join('');
+}
+
+const reverse3 = str => [...str].reverse().join('');
+
 function main(){
     let str = "Hi My name is Mario";
     // reverse(str);
-    console.log(reverse(str));
+    // console.log(reverse(str));
+    // console.log(reverse2(str));
+    console.log(reverse3(str));
 }
 
 main();
