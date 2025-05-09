@@ -15,7 +15,10 @@
 // Output: 23
 // Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 
-
+// Divide and conquer approach
+// 	Dynamic Programming
+// 		Kaenes Algorithm
+// 			https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
 
 function maxSubArray(nums: number[]): number {
     /*
