@@ -160,3 +160,12 @@ maxSubArray problem:
             8742 -> pears
                   372 -> null
     ```
+  - Complexity Overview:
+	- prepend O(1)
+	- append O(1)
+	- lookup/traversal O(n)
+	- insert O(n)
+	- delete O(n)
+
+  - Pointers
+	- Basically a reference to a place in memory
