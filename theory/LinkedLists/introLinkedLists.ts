@@ -120,6 +120,46 @@ function builtLinkedLists()
             }
         }
 
+        remove(index){
+            if(index===0){
+                if(this.head!==null){
+                    const tmp = this.head;
+                    this.head = this.head.next;
+                    tmp.next = null;
+                }
+            }
+            else if(index>=this.length) {
+                if(this.tail !== null){
+                    let pre = this.head;
+                    let tmp = this.head.next;
+
+                    while(tmp.next !== null){
+                        pre = pre.next;
+                        tmp = tmp.next;
+                    }
+
+                    pre.next = null;
+                    tmp = null;
+                    this.tail = pre;
+                }
+            }
+            else {
+                if(this.tail !== null){
+                    let pre = this.head;
+                    
+                    for(let k=0; k<index-1; k++){
+                        pre = pre.next;
+                    }
+
+                    let del = pre.next;
+                    let aft = del.next;
+
+                    pre.next = aft;
+                    del = null;
+                }
+            }
+        }
+
         traverseToIndex(index) {
             //Check parameters
             let counter = 0;
@@ -151,8 +191,12 @@ function builtLinkedLists()
     myLinkedList.append(16);
     myLinkedList.prepend(1); // [1,10,5,16]
 
-    myLinkedList.insert(1, 8);
-    myLinkedList.insert(3, 32);
+    myLinkedList.insert(1, 8); // [1,8,10,5,16]
+    myLinkedList.insert(3, 32); // [1,8,10,32,5,16]
+
+    myLinkedList.remove(0); // [8,10,32,5,16]
+    myLinkedList.remove(9); // [8,10,32,5]
+    myLinkedList.remove(2); // [8,10,5]
 
     console.log(myLinkedList.printList());
 }
