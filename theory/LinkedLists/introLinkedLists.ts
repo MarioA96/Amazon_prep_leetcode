@@ -121,6 +121,7 @@ function builtLinkedLists()
         }
 
         remove(index){
+            // We can check params
             if(index===0){
                 if(this.head!==null){
                     const tmp = this.head;
@@ -144,6 +145,17 @@ function builtLinkedLists()
                 }
             }
             else {
+                const leader = this.traverseToIndex(index-1);
+                const unwantedNode = leader.next;
+                leader.next = unwantedNode.next;
+
+                this.length--;
+                return this;
+            }
+
+            //* This works too!
+            /*
+            else {
                 if(this.tail !== null){
                     let pre = this.head;
                     
@@ -158,6 +170,7 @@ function builtLinkedLists()
                     del = null;
                 }
             }
+            */
         }
 
         traverseToIndex(index) {
