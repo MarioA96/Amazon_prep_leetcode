@@ -169,3 +169,24 @@ maxSubArray problem:
 
   - Pointers
 	- Basically a reference to a place in memory
+
+### Doubly Linked List
+   - A reference from one to the next node and the node before, allowing us to traverse backwards and forward.
+
+   - Complexity Overview
+	- prepend O(1)
+	- append O(1)
+	- lookup/traversal O(n) -> O(n/2)
+	- insert O(n)
+	- delete O(n)
+
+### Cases
+- #### Best Cases for use
+    1. Fast inserts
+    2. Fast deletion
+	3. Ordered
+	4. Flexible size
+
+- #### Worst Cases for use
+    1. Slow lookup
+    2. Requires more memory
