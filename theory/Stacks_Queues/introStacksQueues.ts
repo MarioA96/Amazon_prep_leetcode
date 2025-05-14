@@ -56,9 +56,79 @@ class Stack {
     //isEmpty
 }
 
+class StackArray {
+    private array: any;
+
+    constructor(){
+        this.array = [];
+    }
+
+    peek(){
+        return this.array[this.array.length-1];
+    }
+    push(value){
+        this.array.push(value);
+        return this;
+    }
+    pop(){
+        this.array.pop();
+        return this;
+    }
+
+    //isEmpty
+}
+
+class Queue {
+    private first: any;
+    private last: any;
+    private length: number;
+    
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.length = 0;
+    }
+
+    peek(){
+        return this.first;
+    }
+
+    enqueue(_value){
+        const node = new NodeI(_value);
+        if(this.length===0){
+            this.first = node;
+            this.last = node;
+        }
+        else {
+            this.last.next = node;
+            this.last = node;
+        }
+
+        this.length++;
+        return this;
+    }
+
+    dequeue(){
+        if(!this.first){
+            return null;
+        }
+        if(this.first === this.last){
+            this.last = null;
+        }
+        const holdingPointer = this.first;
+        this.first = this.first.next;
+        this.length--;
+
+        return this;
+    }
+
+}
+
+// Leetcode 232. Implement Queue using Stacks
+
 function main(){
 
-    const myStack = new Stack();
+    const myStack = new StackArray();
     myStack.push('Google');
     myStack.push('Udemy');
     myStack.push('Discord');
@@ -67,6 +137,14 @@ function main(){
     myStack.pop();
     console.log(myStack.peek());
 
+    const myQueue = new Queue();
+    myQueue.enqueue('Mario');
+    myQueue.enqueue('Alberto');
+    myQueue.enqueue('Quiroz');
+    myQueue.enqueue('Soldan');
+
+    myQueue.dequeue();
+    console.log(myQueue.peek());
 }
 
 main();
