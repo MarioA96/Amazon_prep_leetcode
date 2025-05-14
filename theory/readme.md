@@ -190,3 +190,49 @@ maxSubArray problem:
 - #### Worst Cases for use
     1. Slow lookup
     2. Requires more memory
+
+---
+
+## Stacks & Queues
+### Stack Oveview
+- LIFO Structure
+- Operations:
+	1. lookup O(n)
+	2. pop O(1)
+	3. push O(1)
+	4. peek O(1)
+### Misconception
+- You can use both Linked lists or Arrays to implement Stacks, it really depends on the use case
+
+### Queues Overview
+- FIFO Structure
+- Operacions:
+	1. lookup O(n)
+	2. enqueue O(1)
+	3. dequeue O(1)
+	4. peek O(1)
+
+### Misconcention
+- Using arrays to implement as a Queues is a bad idea, because of inefficiency, it is better Linked Lists
+
+## JS (Optional, more in deep about the language)
+- Single threaded language that can be non-blocking
+	- One call stack only
+	- No Deadlocks since is just one task running
+- Memory Heap
+- Call Stack
+- Sync and Async
+	- Single thread doing async tasks or take more time
+	- In order to not block the single thread it can be asynchronus with callback functions, callbacks runs in the background
+- Memory Leak
+- The JS Run-Time Enviroment
+	- Memory heap, Call stack
+	- => Wep APIs
+		- DOM (Document)
+		- AJAX (XMLHttpRequest)
+		- Timeout (setTimeout)
+	- <=> Event loop
+		- Callback queue
+			- onClick
+			- onLoad
+			- onDone
