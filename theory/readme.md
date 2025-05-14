@@ -215,6 +215,16 @@ maxSubArray problem:
 ### Misconcention
 - Using arrays to implement as a Queues is a bad idea, because of inefficiency, it is better Linked Lists
 
+### Cases
+- #### Best Cases for use
+	1. Fast Operations
+	2. Fast Peek
+	3. Ordered
+- #### Worst Cases for use
+	1. Slow Lookup
+
+---
+
 ## JS (Optional, more in deep about the language)
 - Single threaded language that can be non-blocking
 	- One call stack only
