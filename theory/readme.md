@@ -258,7 +258,19 @@ maxSubArray problem:
 #### Types of trees
 - Theres a big number of types of trees
 - Binary Search Tree
-	- Operations:
+	- ##### Operations:
+	- Balanced
 		1. lookup O(logN)
 		2. insert O(logN)
 		3. delete O(logN)
+	- Unbalanced
+		1. lookup O(N)
+		2. insert O(N)
+		3. delete O(N)
+	- ##### Cases
+		- Best Cases
+		1. Better than O(n)
+		2. Ordered
+		3. Flexible size
+		- Worst Cases
+		1. No O(1) operations
