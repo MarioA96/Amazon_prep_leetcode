@@ -125,6 +125,9 @@ class Queue {
 }
 
 // Leetcode 232. Implement Queue using Stacks
+class QueueWStacks {
+    
+}
 
 function main(){
 
