@@ -250,6 +250,7 @@ maxSubArray problem:
 ---
 
 ## Trees
+
 ### Overview
 #### Perfect Tree
 - The number on leafs in N level of a perfect tree = 2^N
