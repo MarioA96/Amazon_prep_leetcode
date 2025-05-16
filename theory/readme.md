@@ -246,3 +246,18 @@ maxSubArray problem:
 			- onClick
 			- onLoad
 			- onDone
+
+---
+
+## Trees
+### Overview
+#### Perfect Tree
+- The number on leafs in N level of a perfect tree = 2^N
+- The total number of leafs upper the level N = Total+1
+#### Types of trees
+- Theres a big number of types of trees
+- Binary Search Tree
+	- Operations:
+		1. lookup O(logN)
+		2. insert O(logN)
+		3. delete O(logN)
