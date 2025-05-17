@@ -23,10 +23,10 @@ class NodeI {
 class BinarySearchTree {
     private root: any;
 
-    cosntructor(){
+    constructor(){
         this.root = null;
     }
-    insert(){
+    insert(_value){
 
     }
     lookup(){
@@ -37,6 +37,13 @@ class BinarySearchTree {
 }
 
 function main(){
+
+    const binarySearch = new BinarySearchTree();
+    
+    binarySearch.insert(15);
+    binarySearch.lookup();
+
+    console.log(binarySearch);
 
 }
 
