@@ -68,7 +68,26 @@ class BinarySearchTree {
         }
     }
     lookup(_value){
-
+        let holdingPointer = this.root;
+        
+        if(this===null){
+            return null;
+        }
+        
+        let height = this.height;
+        while(height >= 1){
+            if(holdingPointer?.value === _value){
+                return true;
+            }
+            else if(holdingPointer?.value < _value){
+                holdingPointer = holdingPointer?.right;
+                height/=2;
+            }
+            else if(holdingPointer?.value > _value){
+                holdingPointer = holdingPointer?.left;
+                height/=2;
+            }
+        }
     }
 
     //remove
@@ -86,9 +105,7 @@ function main(){
     binarySearch.insert(15);
     binarySearch.insert(170);
     
-    // binarySearch.lookup();
-
-    console.log(binarySearch);
+    console.log(binarySearch.lookup(17));
 
 }
 
