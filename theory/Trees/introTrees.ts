@@ -37,19 +37,19 @@ class BinarySearchTree {
         }
         let holdingPointer = this.root;
         let height = this.height;
-        this.height++;
 
-        while(height > 0){
+        while(height >= 1){
             if(holdingPointer.value > _value){
                 if(!holdingPointer.left){
                     const newNode = new NodeI(_value);
                     holdingPointer.left = newNode;
 
+                    this.height++;
                     return this;
                 }
                 else {
                     holdingPointer = holdingPointer.left;
-                    height--;
+                    height/=2;
                 }
             }
             else if(holdingPointer.value < _value){
@@ -57,16 +57,17 @@ class BinarySearchTree {
                     const newNode = new NodeI(_value);
                     holdingPointer.right = newNode;
 
+                    this.height++;
                     return this;
                 }
                 else {
                     holdingPointer = holdingPointer.right;
-                    height--;
+                    height/=2;
                 }
             }
         }
     }
-    lookup(){
+    lookup(_value){
 
     }
 
@@ -77,11 +78,14 @@ function main(){
 
     const binarySearch = new BinarySearchTree();
 
-    binarySearch.insert(15);
-    binarySearch.insert(18);
-    binarySearch.insert(8);
-    binarySearch.insert(28);
+    binarySearch.insert(9);
     binarySearch.insert(4);
+    binarySearch.insert(20);
+    binarySearch.insert(1);
+    binarySearch.insert(6);
+    binarySearch.insert(15);
+    binarySearch.insert(170);
+    
     // binarySearch.lookup();
 
     console.log(binarySearch);
