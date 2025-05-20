@@ -35,13 +35,14 @@ class BinarySearchTree {
 
             return this;
         }
-        let holdingPointer = this.root;
+
+        let holdingPointer = this.root; //holdingPointer o currentNode
         let height = this.height;
+        const newNode = new NodeI(_value);
 
         while(height >= 1){
             if(holdingPointer.value > _value){
                 if(!holdingPointer.left){
-                    const newNode = new NodeI(_value);
                     holdingPointer.left = newNode;
 
                     this.height++;
@@ -54,7 +55,6 @@ class BinarySearchTree {
             }
             else if(holdingPointer.value < _value){
                 if(!holdingPointer.right){
-                    const newNode = new NodeI(_value);
                     holdingPointer.right = newNode;
 
                     this.height++;
@@ -71,13 +71,13 @@ class BinarySearchTree {
         let holdingPointer = this.root;
         
         if(this===null){
-            return null;
+            return false;
         }
         
         let height = this.height;
         while(height >= 1){
             if(holdingPointer?.value === _value){
-                return true;
+                return holdingPointer;
             }
             else if(holdingPointer?.value < _value){
                 holdingPointer = holdingPointer?.right;
@@ -88,24 +88,95 @@ class BinarySearchTree {
                 height/=2;
             }
         }
+        return false;
+
+    }
+}
+
+class AnotherBinarySearchTree {
+
+    public root: NodeI | null;
+
+    constructor(){
+        this.root = null;
     }
 
-    //remove
+    insert(_value){
+        const newNode = new NodeI(_value);
+        if(this.root===null){
+            this.root = newNode;
+        } else {
+            let currentNode = this.root;
+            while(true){
+                if(_value < currentNode.value){
+                    //left
+                    if(!currentNode.left){
+                        currentNode.left = newNode;
+
+                        return this;
+                    }
+                    currentNode = currentNode.left;
+                } else {
+                    //right
+                    if(!currentNode.right){
+                        currentNode.right = newNode;
+                        
+                        return this;
+                    }
+                    currentNode = currentNode.right;
+                }
+            }
+        }
+    }
+
+    lookup(_value){
+        if(!this.root){
+            return false;
+        }
+        let currentNode = this.root;
+        while(currentNode){
+            if(_value < currentNode.value){
+                currentNode = currentNode.left;
+            } else if(_value > currentNode.value){
+                currentNode = currentNode.right;
+            } else if(currentNode.value === _value){
+                return currentNode;
+            }
+        }
+        return false;
+    }
+
+    remove(){
+        
+    }
+
 }
 
 function main(){
 
-    const binarySearch = new BinarySearchTree();
+    const tree = new BinarySearchTree();
 
-    binarySearch.insert(9);
-    binarySearch.insert(4);
-    binarySearch.insert(20);
-    binarySearch.insert(1);
-    binarySearch.insert(6);
-    binarySearch.insert(15);
-    binarySearch.insert(170);
+    tree.insert(9);
+    tree.insert(4);
+    tree.insert(20);
+    tree.insert(1);
+    tree.insert(6);
+    tree.insert(15);
+    tree.insert(170);
     
-    console.log(binarySearch.lookup(17));
+    console.log(tree.lookup(15));
+
+    // const tree2 = new AnotherBinarySearchTree();
+
+    // tree2.insert(9);
+    // tree2.insert(4);
+    // tree2.insert(20);
+    // tree2.insert(1);
+    // tree2.insert(6);
+    // tree2.insert(15);
+    // tree2.insert(170);
+
+    // console.log(tree2.lookup(171));
 
 }
 
