@@ -96,24 +96,74 @@ class BinarySearchTree {
         if(!this.root){
             return null;
         }
-        
-        if(!this.root.left && !this.root.right){
-            this.root = null;
-        }
         else{
-            //Lo encontro en el nodo raiz
-            if(this.root.left || this.root.right){
-                if(this.root.left){
-                    this.root = this.root.left;
-                    this.root.left = null;
-                }
-                else {
-                    this.root = this.root.right;
-                    this.root.right = null;
-                }
+            //Situados en el nodo actual, no sabemos si hay un nodo
+            // padre, asi que se inicializa en null.
+            let parentNode = null;
+            let currentNode = this.root;
 
-                
-                return this;
+            while(currentNode){
+                //Primero debemos de buscar si es el valor que queremos en el algun nodo
+                if(currentNode.value > _value){
+                    parentNode = currentNode;
+                    currentNode = currentNode.left;
+                }
+                else if(currentNode.value < _value){
+                    parentNode = currentNode;
+                    currentNode = currentNode.right;
+                }
+                // Si se encontro el valor
+                else if(currentNode.value === _value){
+                    //0: Si no tiene hijos
+                    if(!currentNode.left && !currentNode.right){
+                        // Si es raiz
+                        if(currentNode===this.root){
+                            this.root = null;
+                        }
+                        // Entonces debemos estar en un nivel mas abajo de raiz
+                        // Debemos saber la direccion que estamos situados
+                        else {
+                            if(parentNode.left === currentNode){
+                                currentNode = null;
+                                parentNode.left = null;
+                            }
+                            else {
+                                currentNode = null;
+                                parentNode.right = null;
+                            }
+                        }
+                    }
+                    //1: Si tiene 1 hijo
+                    if(!currentNode.left || !currentNode.right){
+                        // Si es raiz
+                        if(currentNode===this.root){
+                            
+                        }
+                        // No es raiz
+                        else{
+                            if(currentNode.right){
+                                let tempParentNode = parentNode.right===currentNode.right?parentNode.right:parentNode.left;
+                                //Ya que tiene un hijo y es el de la derecha, buscamos
+                                //Si es que existe en ese sentido, buscamos pero ahora a la izquierda, el mas pequeno
+                                const newNode: NodeI = traverseNode(tempRightNode);
+                                
+                                tempParentNode = newNode;
+                                currentNode = null;
+                                
+                                return this;
+                            }
+                            else{
+                                //Ya que tiene un hijo y es el de la izquierda, solo cambiamos
+                                let tempParentNode = parentNode.right===currentNode.right?parentNode.right:parentNode.left;
+                                
+                                tempParentNode = currentNode.left;
+                                currentNode = null;
+                                
+                                return this;
+                            }
+                        }
+                    }
+                }
             }
         }
 
