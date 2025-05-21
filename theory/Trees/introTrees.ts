@@ -91,6 +91,34 @@ class BinarySearchTree {
         return false;
 
     }
+
+    remove(_value){
+        if(!this.root){
+            return null;
+        }
+        
+        if(!this.root.left && !this.root.right){
+            this.root = null;
+        }
+        else{
+            //Lo encontro en el nodo raiz
+            if(this.root.left || this.root.right){
+                if(this.root.left){
+                    this.root = this.root.left;
+                    this.root.left = null;
+                }
+                else {
+                    this.root = this.root.right;
+                    this.root.right = null;
+                }
+
+                
+                return this;
+            }
+        }
+
+    }
+
 }
 
 class AnotherBinarySearchTree {
@@ -146,8 +174,67 @@ class AnotherBinarySearchTree {
         return false;
     }
 
-    remove(){
-        
+    remove(_value){
+        if(!this.root){
+            return false;
+        }
+        let currentNode = this.root;
+        let parentNode = null;
+
+        while(currentNode){
+            if(_value < currentNode.value){
+                parentNode = currentNode;
+                currentNode = currentNode.left;
+            } else if(_value > currentNode.value){
+                parentNode = currentNode;
+                currentNode = currentNode.right;
+            } else if(currentNode.value === _value){
+                //found the node to delete
+                //case 1: no children
+                if(!currentNode.left && !currentNode.right){
+                    // we are at the root
+                    if(currentNode === this.root){
+                        this.root = null;
+                    } else {
+                        //check if we are in the left or right of the parent
+                        if(parentNode.left === currentNode){
+                            parentNode.left = null;
+                        } else {
+                            parentNode.right = null;
+                        }
+                    }
+
+                    return this;
+                }
+                //case 2: one child
+                else if(!currentNode.right || !currentNode.left){
+                    if(currentNode === this.root){
+                        this.root = currentNode.left ? currentNode.left : currentNode.right;
+                    } else {
+                        if(parentNode.left === currentNode){
+                            parentNode.left = currentNode.left ? currentNode.left : currentNode.right;
+                        } else {
+                            parentNode.right = currentNode.left ? currentNode.left : currentNode.right;
+                        }
+                    }
+
+                    return this;
+                }
+                //case 3: two children
+                else {
+                    let minRightChild = currentNode.right;
+                    while(minRightChild && minRightChild.left){
+                        minRightChild = minRightChild.left;
+                    }
+                    const holdingValue = minRightChild.value;
+
+                    this.remove(minRightChild.value);
+                    currentNode.value = holdingValue;
+
+                    return this;
+                }
+            }
+        }
     }
 
 }
@@ -177,6 +264,10 @@ function main(){
     // tree2.insert(170);
 
     // console.log(tree2.lookup(171));
+    // console.log(tree2);
+
+    // tree2.remove(15);
+    // console.log(tree2);
 
 }
 
