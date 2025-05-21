@@ -150,18 +150,12 @@ class BinarySearchTree {
                         // No es raiz
                         } else if (parentNode) {
                             if (currentNode.right) {
-                                if (parentNode.left === currentNode) {
-                                    parentNode.left = currentNode.right;
-                                } else if (parentNode.right === currentNode) {
-                                    parentNode.right = currentNode.right;
-                                }
+                                //todo
+
                                 return this;
                             } else if (currentNode.left) {
-                                if (parentNode.left === currentNode) {
-                                    parentNode.left = currentNode.left;
-                                } else if (parentNode.right === currentNode) {
-                                    parentNode.right = currentNode.left;
-                                }
+                                //todo
+
                                 return this;
                             }
                         }
@@ -185,6 +179,7 @@ class BinarySearchTree {
                                 this.root = minNode;
                             }
                         }
+
                         return this;
                     }
                 }
@@ -318,15 +313,15 @@ function main(){
 
     tree.insert(9);
     tree.insert(4);
-    // tree.insert(20);
+    tree.insert(20);
     tree.insert(1);
     tree.insert(6);
-    // tree.insert(15);
-    // tree.insert(170);
+    tree.insert(15);
+    tree.insert(170);
     
     // console.log(tree.lookup(15));
 
-    tree.remove(9);
+    tree.remove(20);
     console.log(tree);
 
     // const tree2 = new AnotherBinarySearchTree();
