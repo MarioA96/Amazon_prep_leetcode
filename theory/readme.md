@@ -299,4 +299,6 @@ maxSubArray problem:
 			3. Peek O(1)
 - Trie
 	- ###### Operations:
-	
+		- lookup O(n)
+		- insert O(logN)
+		- delete O(logN)
