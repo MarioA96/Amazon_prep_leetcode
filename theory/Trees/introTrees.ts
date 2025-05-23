@@ -149,12 +149,26 @@ class BinarySearchTree {
                             }
                         // No es raiz
                         } else if (parentNode) {
+                            //Recuerda, currentNode es la solucion y vemos SI tiene un hijo a la derecha
                             if (currentNode.right) {
-                                //todo
+                                //Si la solucion fue en un nivel bajo a la izquierda del nodo padre
+                                // a la izquierda
+                                if(parentNode.left===currentNode){
+                                    parentNode.left = currentNode.right;
+                                }
+                                // lo mismo pero a la derecha
+                                else if(parentNode.right===currentNode){
+                                    parentNode.right = currentNode.right;
+                                }
 
                                 return this;
                             } else if (currentNode.left) {
-                                //todo
+                                if(parentNode.left===currentNode){
+                                    parentNode.left = currentNode.left;
+                                }
+                                else if(parentNode.right===currentNode){
+                                    parentNode.right = currentNode.left;
+                                }
 
                                 return this;
                             }
