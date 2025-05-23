@@ -335,6 +335,7 @@ function main(){
     
     // console.log(tree.lookup(15));
 
+    console.log(tree);
     tree.remove(20);
     console.log(tree);
 
