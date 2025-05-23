@@ -274,3 +274,29 @@ maxSubArray problem:
 		3. Flexible size
 		- Worst Cases
 		1. No O(1) operations
+- Binary Heap
+	- ##### Operations:
+		1. lookup O(n)
+		2. insert O(logN)
+		3. delete O(logN)
+	- ##### Cases
+		- Best Cases
+			1. Better than O(n)
+			2. Priority
+			3. Flexible Size
+			4. Fast Insert
+		- Worst Cases
+			1. Slow Lookup
+- Priority Queue
+	- ##### Operations:
+		- Using arrays
+			1. Enqueue O(1)
+			2. Dequeue O(n)
+			3. Peek O(n)
+		- Using Linked List
+			1. Enqueue O(n)
+			2. Dequeue O(1)
+			3. Peek O(1)
+- Trie
+	- ###### Operations:
+	
