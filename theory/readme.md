@@ -302,3 +302,12 @@ maxSubArray problem:
 		- lookup O(n)
 		- insert O(logN)
 		- delete O(logN)
+
+---
+
+## Graphs
+### Overviews
+#### Types of Graphs
+- Directed/Or Not
+- w Weights/Or Not
+- Cyclic/Or Not
