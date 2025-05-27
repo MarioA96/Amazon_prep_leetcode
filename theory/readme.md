@@ -308,6 +308,11 @@ maxSubArray problem:
 ## Graphs
 ### Overviews
 #### Types of Graphs
-- Directed/Or Not
-- w Weights/Or Not
-- Cyclic/Or Not
+- Directed / Undirected
+- Weighted / Unweighted
+- Cyclic / Acyclic
+### Cases
+- Best Cases
+	1. Relationships
+- Worst Cases
+	2. scaling is Hard
