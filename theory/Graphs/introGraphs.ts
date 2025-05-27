@@ -1,7 +1,7 @@
 
 class Graph {
     public numberOfNode: number;
-    public adjacentList: {};
+    public adjacentList: any;
 
     constructor(){
         this.numberOfNode = 0;
@@ -9,44 +9,67 @@ class Graph {
     }
 
     addVertex(node){
-
+        
     }
 
     addEdge(node1, node2){
         //undirected graph
     }
 
-    showConnections(){
-        const allNodes = Object.keys;
-        (this.adjacentList);
-        for(let node of allNodes){
-            let nodeConnections = this.adjacentList[node];
-            let connections = "";
+    showConnections() { 
+        const allNodes = Object.keys(this.adjacentList); 
+
+        for (let node of allNodes) { 
+            let nodeConnections = this.adjacentList[node]; 
+            let connections = ""; 
             let vertex;
-            for(vertex of nodeConnections){
-                
-            }
-        }
-    }
+
+            for (vertex of nodeConnections) {
+                connections += vertex + " ";
+            } 
+
+            console.log(node + "-->" + connections); 
+        } 
+    } 
 
 }
 
 function main(){
     
-    //* Graphs Representations
-    // Edge List
-    const graphEL = [[0,2],[2,3],[2,1],[1,3]];
+    const myGraph = new Graph();
+    myGraph.addVertex('0');
+    myGraph.addVertex('1');
+    myGraph.addVertex('2');
+    myGraph.addVertex('3');
+    myGraph.addVertex('4');
+    myGraph.addVertex('5');
+    myGraph.addVertex('6');
+    myGraph.addEdge('3', '1'); 
+    myGraph.addEdge('3', '4'); 
+    myGraph.addEdge('4', '2'); 
+    myGraph.addEdge('4', '5'); 
+    myGraph.addEdge('1', '2'); 
+    myGraph.addEdge('1', '0'); 
+    myGraph.addEdge('0', '2'); 
+    myGraph.addEdge('6', '5');
 
-    // Adjacent List
-    const graphAL = [[2], [2,3], [0,1,3], [1,2]];
+    myGraph.showConnections(); 
 
-    // Adjacent Matrix
-    const graphAM = {
-        0: [0, 0, 1, 0],
-        1: [0, 0, 1, 1],
-        2: [1, 1, 0, 1],
-        3: [0, 1, 1, 0]
-    };
+
+    // //* Graphs Representations
+    // // Edge List
+    // const graphEL = [[0,2],[2,3],[2,1],[1,3]];
+
+    // // Adjacent List
+    // const graphAL = [[2], [2,3], [0,1,3], [1,2]];
+
+    // // Adjacent Matrix
+    // const graphAM = {
+    //     0: [0, 0, 1, 0],
+    //     1: [0, 0, 1, 1],
+    //     2: [1, 1, 0, 1],
+    //     3: [0, 1, 1, 0]
+    // };
 
 }
 
