@@ -2,9 +2,16 @@
 
 function fibonacciIterative(num: number): number{
 
-    let answer: number = 1;
+    if(num < 2){
+        return num;
+    }
 
-    return answer;
+    const fib: number[] = [0,1];
+    for (let i = 2; i <= num; i++) {
+        fib.push( fib[i-2]! + fib[i-1]! );
+    }
+
+    return fib[num]!;
 }
 
 function fibonacciRecursive(num: number): number{
@@ -13,6 +20,9 @@ function fibonacciRecursive(num: number): number{
 
     if(num < 2){
         return num;
+    }
+    else if(num === 2){
+        return 1;
     }
 
     answer = fibonacciRecursive(num-1) + fibonacciRecursive(num-2);
@@ -26,12 +36,13 @@ function fibonacciRecursive(num: number): number{
 
 function main(){
 
-    let num = 8;
+    let num = 5;
 
-    //const answer_1 = fibonacciIterative(num);
-    const answer_2 = fibonacciRecursive(num);
+    const answer_1 = fibonacciIterative(num);
+    // const answer_2 = fibonacciRecursive(num);
 
-    console.log(answer_2);
+    console.log(answer_1);
+    // console.log(answer_2);
 
 }
 
