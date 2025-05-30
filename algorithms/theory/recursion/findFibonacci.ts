@@ -1,6 +1,8 @@
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
 
-function fibonacciIterative(num: number): number{
+//* Theorem: Anything that you can do with a recursion CAN be done iteratively
+
+function fibonacciIterative(num: number): number{ // O(n)
 
     if(num < 2){
         return num;
@@ -14,7 +16,7 @@ function fibonacciIterative(num: number): number{
     return fib[num]!;
 }
 
-function fibonacciRecursive(num: number): number{
+function fibonacciRecursive(num: number): number{ // O(2^n)
     
     let answer: number = 1;
 
@@ -39,10 +41,10 @@ function main(){
     let num = 5;
 
     const answer_1 = fibonacciIterative(num);
-    // const answer_2 = fibonacciRecursive(num);
+    const answer_2 = fibonacciRecursive(num);
 
     console.log(answer_1);
-    // console.log(answer_2);
+    console.log(answer_2);
 
 }
 

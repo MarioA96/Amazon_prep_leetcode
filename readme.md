@@ -316,3 +316,28 @@ maxSubArray problem:
 	1. Relationships
 - Worst Cases
 	2. scaling is Hard
+
+---
+
+## Algorithms
+## - Recursion
+
+1. Identify the base case
+2. Identify the recursive case
+3. Get closer and closer and return when needed. Usually you have 2 returns
+
+- Theorem: Anything you can do with a recursion CAN be done iteratively
+
+### Cases:
+- Best suitable cases
+	1. DRY
+	2. Readability
+- Worst suitable cases
+	1. Large Stack
+
+### When to use recursion
+- Everytime you are using  a tree or converting Something into a tree, consider recursion.
+	1. Divided into number of subproblems that are smaller instances of the same problem.
+	2. Each instance of the subproblem is identical in nature.
+	3. The solutions of each problem can be combinend to solve the problem at hand.
+- Divide and conquer using recursion.
