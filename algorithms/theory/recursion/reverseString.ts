@@ -1,5 +1,14 @@
-function reverseString(str: string) {
+// Given an string, return the reverse version of it via iterative and recursive method
 
+
+function reverseString(str: string): string { // O(n)
+
+    const reversedString: string[] = [];
+    for(let i=str.length-1; i>=0; i--){
+        reversedString.push(str[i]!);
+    }
+
+    return reversedString.join("");
 }
 
 function swap(str: string): string{
@@ -12,7 +21,7 @@ function swap(str: string): string{
     return chars.join("");
 }
 
-function reverseStringRecursive(str: string): string {
+function reverseStringRecursive(str: string): string { // O(2^n)
 
     if(str.length<=1){
         return str[0]!;
@@ -28,9 +37,11 @@ function reverseStringRecursive(str: string): string {
 }
 
 function main(){
-    // reverseString("yoyo master");
-    const res = reverseStringRecursive("yoyo master");
-    console.log(res);
+    const res_1 = reverseString("yoyo_master");
+    const res_2 = reverseStringRecursive("yoyo_master");
+    
+    console.log(res_1);
+    console.log(res_2);
 }
 
 main();
