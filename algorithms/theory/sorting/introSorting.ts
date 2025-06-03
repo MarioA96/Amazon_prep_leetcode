@@ -54,21 +54,18 @@ function insertionSort(array: number[]): number[]{
 
     solvedArray[0] = array[0];
     for(let i=1; i<array.length; i++){
-        //delante, enmedio, inicio
-        for(let j=0; j<solvedArray.length; j++){
+        
+        let len = solvedArray.length;
+        for(let j=0; j<len; j++){
             if(array[i] < solvedArray[j]){
-                let len = solvedArray.length;
                 while(len>j){
-                    console.log(j, len);
                     solvedArray[len] = solvedArray[len-1];
-                    
+
                     len -= 1;
                 }
                 solvedArray[j] = array[i];
-                // solvedArray[j+1] = solvedArray[j];
-                // solvedArray[j] = array[i];
             }
-            if(array[i] > solvedArray[j]){
+            else if(array[i] > solvedArray[j]){
                 if(!solvedArray[j+1]){ 
                     solvedArray[j+1] = array[i];
                 }
@@ -76,7 +73,7 @@ function insertionSort(array: number[]): number[]{
                 continue;
             }
         }
-
+        
     }
 
     return solvedArray;
@@ -91,8 +88,7 @@ function main(){
     // console.log( spanish.sort( (a,b) => a.localeCompare(b) ) );
 
     // const array = [99,44,6,2,1,5,63,87,283,4,0];
-    // const array = [46,1,7,25,2,22,42,8,20];
-    const array = [46,1];
+    const array = [46,1,7,25,2,22,42,8,20];
     // const sortedArray = bubbleSort(array);
     // const sortedArray = selectionSort(array);
     const sortedArray = insertionSort(array);
