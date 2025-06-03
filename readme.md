@@ -341,3 +341,14 @@ maxSubArray problem:
 	2. Each instance of the subproblem is identical in nature.
 	3. The solutions of each problem can be combinend to solve the problem at hand.
 - Divide and conquer using recursion.
+
+---
+
+## - Sorting
+
+### Types of sorting
+- Bubble sort
+- Insertion sort
+- Selection sort
+- Merge sort
+- Quick sort
