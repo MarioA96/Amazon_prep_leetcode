@@ -48,6 +48,21 @@ function selectionSort(array: number[]): number[]{
     return array;
 }
 
+function insertionSort(array: number[]): number[]{
+
+    const solvedArray = [];
+    for(let i=0; i<array.length; i++){
+
+        //delante, enmedio, inicio
+        solvedArray.push(array[i]);
+        if(solvedArray[i]>solvedArray[i]){
+
+        }
+
+    }
+
+    return []
+}
 
 function main(){
 
@@ -59,7 +74,8 @@ function main(){
 
     const array = [99,44,6,2,1,5,63,87,283,4,0];
     // const sortedArray = bubbleSort(array);
-    const sortedArray = selectionSort(array);
+    // const sortedArray = selectionSort(array);
+    const sortedArray = insertionSort(array);
 
     console.log(sortedArray);
 
