@@ -109,48 +109,57 @@ function mergeSort(array: number[]): number[]{
         return array;
     }
 
-    if(array.length === 2){
+    else if(array.length === 2){
         if(array[0]>array[1]){
             const temp = array[0];
             array[0] = array[1];
             array[1] = temp;
+
+            // console.log(array);
             return array;
         }
         else {
+            // console.log(array);
             return array;
         }
     }
 
     // Split array-in into right and left
-    const left = array.slice(0, Math.floor(array.length/2));
-    const right = array.slice(Math.floor(array.length/2), array.length);
+    const left = array.slice(0, Math.ceil(array.length/2));
+    const right = array.slice(Math.ceil(array.length/2), array.length);
+    // console.log("left, before: ", left);
+    // console.log("right, before: ", right);
 
     return merge(
         mergeSort(left),
         mergeSort(right)
     );
+    
 
 }
 
 function merge(left: number[], right: number[]): number[]{
 
+    // console.log("left: ", left, ", right: ", right);
     let arr: number[] = [];
 
     let lenLeft = left.length;
     let lenRight = right.length;
-    let i=0;
-    let j=0;
+    // let i=0;
+    // let j=0;
 
     while(lenLeft>0 && lenRight>0){
-        if(left[i]<right[j]){
-            arr.push(left[i]);
+        if(left[0]<right[0]){
+            arr.push(left[0]);
+            left.shift();
             lenLeft--;
-            i++;
+            // i++;
         }
-        else if(left[i]>right[j]){
-            arr.push(right[j]);
+        else if(left[0]>right[0]){
+            arr.push(right[0]);
+            right.shift();
             lenRight--;
-            j++;
+            // j++;
         }
     }
 
@@ -161,6 +170,7 @@ function merge(left: number[], right: number[]): number[]{
         arr = arr.concat(left);
     }
 
+    // console.log("merged: ", arr);
     return arr;
 }
 
@@ -173,8 +183,9 @@ function main(){
     // console.log( spanish.sort( (a,b) => a.localeCompare(b) ) );
 
     // const array = [99,44,6,2,1,5,63,87,283,4,0];
-    const array = [46,1,7,25,2,22,42,8,20];
-    // const array = [8,1,25,42];
+    // const array = [46,1,7,25,2,22,42,8,20];
+    const array = [46,22,8,1,25,42,7,20,2];
+    // const array = [46,22,8,1,25];
     // const sortedArray = bubbleSort(array);
     // const sortedArray = selectionSort(array);
     // const sortedArray = insertionSort(array);
