@@ -388,3 +388,25 @@ maxSubArray problem:
 // #7 - Large user name database needs to be sorted. Data is very random: Merge Sort si tenemos suficiente memoria, o Quick Sort si no nos preocupamos por el peor caso y podemos seleccionar un buen pivote.
 
 // #8 - You want to teach sorting for the first time: Bubble Sort, Selection Sort porque son los más sencillos.
+
+---
+## Searching/Traversal
+### Types of searching
+1. Linear search
+	- Time complexity O(n)
+2. Binary search
+	- Best Time complexity O(log n)
+3. Depth first search
+	- Time complexity O(n)
+	- Best cases:
+		1. Requires less memory
+		2. Does the path exist?
+	- Worst cases:
+		1. Can get slow
+4. Breadth first search
+	- Time complexity O(n)
+	- Best cases:
+		2. Best for finding the shortest path
+		3. Closer Nodes
+	- Worst cases:
+		1. Requires more memory
