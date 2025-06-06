@@ -428,8 +428,8 @@ maxSubArray problem:
 4. Breadth first search
 	- Time complexity O(n)
 	- Best cases:
-		2. Best for finding the shortest path
-		3. Closer Nodes
+		1. Best for finding the shortest path
+		2. Closer Nodes
 	- Worst cases:
 		1. Requires more memory
 ### Interview Questions
