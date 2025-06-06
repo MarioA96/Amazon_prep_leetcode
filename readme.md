@@ -403,6 +403,28 @@ maxSubArray problem:
 		2. Does the path exist?
 	- Worst cases:
 		1. Can get slow
+	- Order configurations
+		1. PreOrder (Helpful when we want to recreate a tree)
+		```js
+		//				9
+		//		4			20
+		//	1		6	15		170
+		preOrder = [9, 4, 1, 6, 20, 15, 170]
+		```
+		2. InOrder (Helpful we want to list elements in order)
+		```js
+		//				9
+		//		4			20
+		//	1		6	15		170
+		inOrder = [1, 4, 6, 9, 15, 20, 170]
+		```
+		3. PostOrder
+		```js
+		//				9
+		//		4			20
+		//	1		6	15		170
+		postOrder = [1, 6, 4, 15, 170, 20, 9 ]
+		```
 4. Breadth first search
 	- Time complexity O(n)
 	- Best cases:
