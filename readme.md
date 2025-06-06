@@ -410,3 +410,21 @@ maxSubArray problem:
 		3. Closer Nodes
 	- Worst cases:
 		1. Requires more memory
+### Interview Questions
+//If you know a solution is not far from the root of the tree:
+BFS - Because it starts searching each node from the parent first
+
+//If the tree is very deep and solutions are rare: 
+BFS - DFS will take a really long time with type of tree, because its rare it is going to visit each node step by step 
+
+//If the tree is very wide:
+DFS - BFS its going to need too much memory
+
+//If solutions are frequent but located deep in the tree:
+DFS - Luckly it will find a solution quicker
+
+//Determining whether a path exists between two nodes:
+DFS - Thats what DFS is made for
+
+//Finding the shortest path:
+BFS - Thats what BFS is made for
