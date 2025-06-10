@@ -450,3 +450,7 @@ DFS - Thats what DFS is made for
 
 //Finding the shortest path:
 BFS - Thats what BFS is made for
+### Known useful algorithms
+- On weighted graphs
+	- Dijkstra 
+	- Bellman-Ford Algorithm
