@@ -453,4 +453,8 @@ BFS - Thats what BFS is made for
 ### Known useful algorithms
 - On weighted graphs
 	- Dijkstra 
+		- Faster than Bellman-Ford most of the time
+		- It doesnt have support for negative weights
 	- Bellman-Ford Algorithm
+		- Finding the shortest path
+		- Accomodates negative weights
