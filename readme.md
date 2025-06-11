@@ -458,3 +458,9 @@ BFS - Thats what BFS is made for
 	- Bellman-Ford Algorithm
 		- Finding the shortest path
 		- Accomodates negative weights
+---
+## Dynamic programming
+It is an optimization technique
+- Do you have something you can cache?
+- Memoization -> Caching
+	- Speeding programs by diving in sub problems
