@@ -14,12 +14,54 @@ class TreeNode {
  
 
 
-function validateTree(arr: number[]): boolean{
+function isValidBST(root: TreeNode | null): any {
+    let currentNode = root;
+    
+    // if(!currentNode.left && !currentNode.right){
+    //     return true;
+    // }
+    
+    const queue = [];
+    const list = [];
+    
+    queue.push(currentNode);
+    
+    while(queue.length){
 
-    //CODE
+        currentNode = queue.shift();
+        list.push(currentNode.val);
 
-    return false;
-}
+        if(currentNode === null){
+            continue;
+        }
+        if(!currentNode.left && !currentNode.right){
+            continue;
+        }
+        if(currentNode.left){
+            let leftVal = currentNode.left;
+            if(leftVal.val >= currentNode.val){
+                return false;
+            }
+            queue.push(currentNode.left);
+        }
+        // else {
+        //     queue.push(null);
+        // }
+        if(currentNode.right){
+            let rightVal = currentNode.right;
+            if(rightVal.val <= currentNode.val){
+                return false
+            }
+            // queue.push(currentNode.right);
+        }
+        // else {
+        //     queue.push(null);
+        // }
+    }
+
+    //console.log(list);
+    return true;
+};
 
 function main(){
 
@@ -32,6 +74,8 @@ function main(){
     root.left = new TreeNode(1);
     root.right = new TreeNode(3);
     console.log(root);
+//     [2,1,3]
+// [5,1,4,null,null,3,6]
 
 }
 
