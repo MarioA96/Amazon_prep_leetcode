@@ -464,3 +464,14 @@ It is an optimization technique
 - Do you have something you can cache?
 - Memoization -> Caching
 	- Speeding programs by diving in sub problems
+### Rules:
+- Dynamich programming:
+	- Divide & Conquer +
+	- Memoization
+	```
+	1. Can be divided into subproblem
+	2. Recursive solution
+	3. Are there repetitive subproblems?
+	4. Memoization subproblems
+	*. Demand a raise from your boss!!
+	```
