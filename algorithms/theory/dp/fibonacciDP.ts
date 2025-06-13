@@ -36,13 +36,49 @@ function fibonacciMemoized(n: number){
 
 }
 
+
+let calculations3 = 0;
+function fibonacciMemoizedClosure(){
+    let cache = {};
+
+    return function fib(n: number){
+        // if(n<2){
+        //     return cache[n];
+        // }
+
+        // if(n-2 in cache){
+        //     return cache[n-1] + cache[n-2];
+        // } else {
+        //     cache[n-2] = fib(n-2);
+        //     cache[n-1] = fib(n-1);
+
+        //     return cache[n-1] + cache[n-2];
+        // }
+        calculations3++;
+        if(n in cache){
+            return cache[n];
+        }else {
+            if(n<2){
+                return n;
+            } else {
+                cache[n] = fib(n-1) + fib(n-2);
+                return cache[n];
+            }
+        }
+    }
+}
+
 function main(){ 
 
-    console.log("fibonacci: ", fibonacci(20));
-    console.log("calculations: ", calculations1);
+    // console.log("fibonacci: ", fibonacci(20));
+    // console.log("calculations: ", calculations1);
 
-    console.log("fibonacci: ", fibonacciMemoized(20));
+    console.log("fibonacci: ", fibonacciMemoized(98));
     console.log("calculations: ", calculations2);
+
+    const fibCls = fibonacciMemoizedClosure();
+    console.log("fibonacci: ", fibCls(98));
+    console.log("calculations: ", calculations3);
 
 }
 
