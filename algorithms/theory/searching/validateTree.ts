@@ -12,8 +12,9 @@ class TreeNode {
     }
 }
  
-function busquedaComparativa(root, parent, actual){
-    currentNode = root;
+function busquedaComparativa(root: TreeNode, parent: number, actual: number){
+    let currentNode = root;
+    let lastVal: number;
     const map = {};
 
     while(1){
