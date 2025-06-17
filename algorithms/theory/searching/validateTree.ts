@@ -12,7 +12,37 @@ class TreeNode {
     }
 }
  
+function busquedaComparativa(root, parent, actual){
+    currentNode = root;
+    const map = {};
 
+    while(1){
+        if(actual<currentNode.val){
+            if(currentNode.left){
+                lastVal = currentNode.val;
+                currentNode = currentNode.left;
+            }
+            else{
+                return false;
+            }
+        }
+        else if(actual>currentNode.val){
+            if(currentNode.right){
+                lastVal = currentNode.val;
+                currentNode = currentNode.right;
+            }
+            else{
+                return false;
+            }
+        }
+        else if(actual === currentNode.val){
+            // if(actual in map){
+            //     return false;
+            // }
+            return true;
+        }
+    }
+}
 
 function isValidBST(root: TreeNode | null): any {
     let currentNode = root;
