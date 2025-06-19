@@ -12,16 +12,16 @@ class TreeNode {
     }
 }
  
-function busquedaComparativa(root: TreeNode, parent: number, actual: number){
+function busquedaComparativa(root: TreeNode, actual: number){
+    
     let currentNode = root;
-    let lastVal: number;
-    const map = {};
+    let treeLevel = 0;
 
     while(1){
         if(actual<currentNode.val){
             if(currentNode.left){
-                lastVal = currentNode.val;
                 currentNode = currentNode.left;
+                treeLevel++;
             }
             else{
                 return false;
@@ -29,68 +29,103 @@ function busquedaComparativa(root: TreeNode, parent: number, actual: number){
         }
         else if(actual>currentNode.val){
             if(currentNode.right){
-                lastVal = currentNode.val;
                 currentNode = currentNode.right;
+                treeLevel++;
             }
             else{
                 return false;
             }
         }
         else if(actual === currentNode.val){
-            // if(actual in map){
-            //     return false;
-            // }
             return true;
         }
     }
 }
 
-function isValidBST(root: TreeNode | null): any {
+function checkDuplications(root, set) { 
+    if (root == null) return false; 
+
+    if (set.has(root.data)) return true; 
+
+    set.add(root.data); 
+    
+    return checkDuplications(root.left, set) || checkDuplications(root.right, s); 
+} 
+
+function hasDuplications(root){ 
+    let set = new Set();
+
+    return checkDuplications(root, set); 
+} 
+
+function isValidBST(root: TreeNode) {
     let currentNode = root;
     
-    // if(!currentNode.left && !currentNode.right){
-    //     return true;
-    // }
+    if(!currentNode.left && !currentNode.right){
+        return true;
+    }
     
+    const isDuplicated = hasDuplications(root);
+    if(isDuplicated) return false;
+
     const queue = [];
     const list = [];
     
     queue.push(currentNode);
     
-    while(queue.length){
-
+    while(queue.length > 0){
         currentNode = queue.shift();
-        list.push(currentNode.val);
+        
+        if(currentNode.val === "null"){
+            list.push("null");
+        } else {
+            list.push(currentNode.val);
+        }
 
-        if(currentNode === null){
+        if(!currentNode){
             continue;
         }
         if(!currentNode.left && !currentNode.right){
             continue;
         }
+
         if(currentNode.left){
-            let leftVal = currentNode.left;
-            if(leftVal.val >= currentNode.val){
+            const left = currentNode.left;
+            queue.push(currentNode.left);
+            // const level = Math.floor( Math.log2(list.length+queue.length) );
+
+            if(left.val >= currentNode.val){
                 return false;
             }
-            queue.push(currentNode.left);
-        }
-        // else {
-        //     queue.push(null);
-        // }
-        if(currentNode.right){
-            let rightVal = currentNode.right;
-            if(rightVal.val <= currentNode.val){
-                return false
+            else {
+                const res = busquedaComparativa(root, left.val);
+                if(!res) return false;
             }
-            // queue.push(currentNode.right);
         }
-        // else {
-        //     queue.push(null);
-        // }
+        else {
+            queue.push("null");
+        }
+
+        if(currentNode.right){
+            const right = currentNode.right;
+            queue.push(currentNode.right);
+            // const level = Math.floor( Math.log2(list.length+queue.length) );
+
+            if(right.val <= currentNode.val){
+                return false;
+            }
+            else {
+                const res = busquedaComparativa(root, right.val);
+                if(!res) return false;
+            }
+        }
+        else {
+            queue.push("null");
+        }
+
     }
 
-    //console.log(list);
+    console.log(list);
     return true;
 };
 
