@@ -469,9 +469,33 @@ It is an optimization technique
 	- Divide & Conquer +
 	- Memoization
 	```
-	1. Can be divided into subproblem
+	1. Can it be divided into subproblem
 	2. Recursive solution
 	3. Are there repetitive subproblems?
 	4. Memoization subproblems
 	*. Demand a raise from your boss!!
 	```
+
+## The Non-Technical Interviews
+### Dealing with questions
+- Tell me about a problem you solved?
+- Why do you want to work for us?
+- What to ask the interviewer
+- Tell me about yourself
+- What is you biggest weakness?
+- Secret weapon
+- After the interview
+### Mindset
+- It's not Do-or-Die
+- This is just one of many other oportunities
+- Learning experience
+- Don't hope for anything at all
+- The less you do, the more you do
+- Enjoy the learning experience, prove yourself
+- Don't be nerveus, just another day in the office
+- Make the interview exciting so both have a good moment
+- Before you open the door, "you are gonna meet a good ol' friend" 
+#### Mentalize these questions
+- Can you do the job?
+- Can I work with you?
+- Are you going to improve?
