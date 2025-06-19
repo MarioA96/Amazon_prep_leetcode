@@ -36,7 +36,7 @@ function fibonacciMemoized(n: number){
 
 }
 
-
+// Solution strat: Top-Down memoization approach
 let calculations3 = 0;
 function fibonacciMemoizedClosure(){
     let cache = {};
@@ -68,6 +68,17 @@ function fibonacciMemoizedClosure(){
     }
 }
 
+// Solution strat: Bottom-Up, probably harder to know when to use
+function fibonacciMaster2(n: number){
+    let answer = [0,1];
+
+    for(let i=2; i<=n; i++) {
+        answer.push(answer[i-2] + answer[i-1]);
+    }
+
+    return answer.pop();
+}
+
 function main(){ 
 
     // console.log("fibonacci: ", fibonacci(20));
@@ -80,6 +91,7 @@ function main(){
     console.log("fibonacci: ", fibCls(98));
     console.log("calculations: ", calculations3);
 
+    console.log("fibonacci 2: ", fibonacciMaster2(98));
 }
 
 main();
