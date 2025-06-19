@@ -12,16 +12,13 @@ class TreeNode {
     }
 }
  
-function busquedaComparativa(root: TreeNode, actual: number){
-    
+function busquedaComparativa(root, actual){
     let currentNode = root;
-    let treeLevel = 0;
 
     while(1){
         if(actual<currentNode.val){
             if(currentNode.left){
                 currentNode = currentNode.left;
-                treeLevel++;
             }
             else{
                 return false;
@@ -30,7 +27,6 @@ function busquedaComparativa(root: TreeNode, actual: number){
         else if(actual>currentNode.val){
             if(currentNode.right){
                 currentNode = currentNode.right;
-                treeLevel++;
             }
             else{
                 return false;
@@ -45,29 +41,29 @@ function busquedaComparativa(root: TreeNode, actual: number){
 function checkDuplications(root, set) { 
     if (root == null) return false; 
 
-    if (set.has(root.data)) return true; 
+    if (set.has(root.val)) return true; 
 
-    set.add(root.data); 
+    set.add(root.val); 
     
-    return checkDuplications(root.left, set) || checkDuplications(root.right, s); 
+    return checkDuplications(root.left, set) || checkDuplications(root.right, set); 
 } 
 
 function hasDuplications(root){ 
     let set = new Set();
 
-    return checkDuplications(root, set); 
+    return checkDuplications(root, set);
 } 
 
-function isValidBST(root: TreeNode) {
+function isValidBST(root) {
+    const isDuplicated = hasDuplications(root);
+    if(isDuplicated) return false;
+
     let currentNode = root;
     
     if(!currentNode.left && !currentNode.right){
         return true;
     }
     
-    const isDuplicated = hasDuplications(root);
-    if(isDuplicated) return false;
-
     const queue = [];
     const list = [];
     
@@ -92,8 +88,7 @@ function isValidBST(root: TreeNode) {
         if(currentNode.left){
             const left = currentNode.left;
             queue.push(currentNode.left);
-            // const level = Math.floor( Math.log2(list.length+queue.length) );
-
+            
             if(left.val >= currentNode.val){
                 return false;
             }
@@ -109,8 +104,7 @@ function isValidBST(root: TreeNode) {
         if(currentNode.right){
             const right = currentNode.right;
             queue.push(currentNode.right);
-            // const level = Math.floor( Math.log2(list.length+queue.length) );
-
+            
             if(right.val <= currentNode.val){
                 return false;
             }
@@ -125,7 +119,6 @@ function isValidBST(root: TreeNode) {
 
     }
 
-    console.log(list);
     return true;
 };
 
