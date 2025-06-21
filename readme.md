@@ -475,16 +475,17 @@ It is an optimization technique
 	4. Memoization subproblems
 	*. Demand a raise from your boss!!
 	```
+---
 
 ## The Non-Technical Interviews
 ### Dealing with questions
-- Tell me about a problem you solved?
-- Why do you want to work for us?
-- What to ask the interviewer
-- Tell me about yourself
-- What is you biggest weakness?
-- Secret weapon
-- After the interview
+1. Tell me about yourself
+2. Why do you want to work for us?
+3. Tell me about a problem you solved?
+4. What to ask the interviewer
+5. What is you biggest weakness?
+6. Secret weapon
+7. After the interview
 ### Mindset
 - It's not Do-or-Die
 - This is just one of many other oportunities
@@ -494,8 +495,43 @@ It is an optimization technique
 - Enjoy the learning experience, prove yourself
 - Don't be nerveus, just another day in the office
 - Make the interview exciting so both have a good moment
-- Before you open the door, "you are gonna meet a good ol' friend" 
+- Before you open the door, "you are gonna meet a good ol' friend", don't be boring
+- Not all interviews are the same
 #### Mentalize these questions
 - Can you do the job?
 - Can I work with you?
 - Are you going to improve?
+#### 4 Heroes
+- Technical
+	- A story about your skills and past experience, just for yourself
+	- Problem of portafolio or any other project
+- Success
+	- What did you do that made you successful
+- Leadership
+	- Do you have leadership qualities?
+- Challenge
+	- They want to hear from you something that you went throught as a challenge you faced
+	- How you overcame a technical problem?
+```
+Take 30 minutes of your time to write down 2~3 hero stories with the points mentioned. 
+Use these hero stories as your base when interviewing at any company. 
+```
+### Tell me about yourself?
+- Your triggers of success
+	- How did you get to the point you are right now
+	- User your 4 heroes
+- Mention things you want to get asked
+	- Keep in mind that probably the interviewer haven't even check you resume
+	- What impact a challenge you faced had
+	- How did you stand up
+- Skills should be relevant to job
+	- How did you get yourself into coding?
+	- Why do you feel about confident about your skills
+	- About the position you are postulating
+```
+Spend the next 30 minutes writing your own 1 minute "pitch" for when you get asked 
+"Tell Me About Yourself" types of questions. 
+```
+### Why us?
+- This must be your moment to shine
+- Make the interviewer feel special, your top option
