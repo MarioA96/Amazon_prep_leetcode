@@ -27,10 +27,18 @@ function combinatory(nums: number[]): Set<number>{
 }
 
 
-const robber = (nums: number[]): number => {
+const robber = () => {
     
+    let cache = {};
 
-    return 0;
+    return function robberMaster(nums: number[]): number {
+        let len = nums.length;
+        if(len===1){
+            
+        }
+
+        return 0;
+    }
 };
 
 function main(){
@@ -39,6 +47,8 @@ function main(){
     // const nums: number[] = [1,2,3,1];
      const nums: number[] = [2,1,1,2];
 
-    const output = combinatory(nums);
+    const output: Set<number> = combinatory(nums);
     console.log(output);
 }
+
+main();
