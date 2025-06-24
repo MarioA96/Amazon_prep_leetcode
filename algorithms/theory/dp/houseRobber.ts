@@ -16,30 +16,48 @@ function combinatory(nums: number[]): Set<number>{
     set.add(nums[len-1]);
 
     for(let i=0; i<len; i++){
-        if(i===len-1){
+        if(i===len-2 || i===len-1){
             continue;
         }
+        else {
+            set.add( nums[i]+nums[len-1] );
+        }
 
-        set.add( nums[i]+nums[len-1] );
+        // if(len===1){
+        //     set.add( nums[0] );
+        // }
+        // else if(nums[len-1]){
+        //     set.add( nums[i]+nums[len-1] );
+        // }
+
     }
 
+    console.log("Nums: ", nums, "Combinatory: ", set);
     return set;
 }
 
+const poppedArray = (nums: number[]): number[] => {
+    nums.pop();
+
+    return nums;
+}
 
 const robber = () => {
     
-    let cache = {};
-
-    return function robberMaster(nums: number[]): number {
+    return function robberMain(nums: number[]): Set<number> {
         let len = nums.length;
         if(len===1){
-            
+            return new Set<number>().add(nums[0]);
         }
 
-        return 0;
+        const set2: Set<number> = combinatory(nums); // <n-1>
+        const set1: Set<number> = robberMain( poppedArray(nums) ); //{n}
+        const unionSet: Set<number> = set1.union(set2); //{n} U <n-1>
+
+        return unionSet;
     }
 };
+
 
 function main(){
     //  1 <= nums.length <= 100
@@ -47,8 +65,10 @@ function main(){
     // const nums: number[] = [1,2,3,1];
      const nums: number[] = [2,1,1,2];
 
-    const output: Set<number> = combinatory(nums);
-    console.log(output);
+    // const output: Set<number> = combinatory(nums);
+    // console.log(output);
+    const robberCls = robber();
+    console.log( "Set: ", robberCls(nums) );
 }
 
 main();
