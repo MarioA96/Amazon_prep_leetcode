@@ -32,7 +32,6 @@ function combinatory(nums: number[]): Set<number>{
 
     }
 
-    console.log("Nums: ", nums, "Combinatory: ", set);
     return set;
 }
 
@@ -63,7 +62,8 @@ function main(){
     //  1 <= nums.length <= 100
     //  0 <= nums[i] <= 400
     // const nums: number[] = [1,2,3,1];
-     const nums: number[] = [2,1,1,2];
+    //  const nums: number[] = [2,1,1,2];
+    const nums: number[] = [2,7,9,3,1];
 
     // const output: Set<number> = combinatory(nums);
     // console.log(output);
@@ -72,3 +72,6 @@ function main(){
 }
 
 main();
+
+//Automata de secuencias no deterministicas en procesos combinatorios 
+// mediante computos estocasticos retroalimentables y auto incrementables
