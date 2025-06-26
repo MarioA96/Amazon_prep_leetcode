@@ -10,6 +10,7 @@ return the maximum amount of money you can rob tonight without alerting the poli
 */
 
 // Function to calculate non-combinatory but linear sums over nums
+// Iterative simple
 var rob = function(nums) {
     
     let sums = [];
@@ -39,6 +40,8 @@ var rob = function(nums) {
     return max;
 };
 
+//----------------------------------------------------------
+//Set iterative simple
 function combinatory(nums: number[]): Set<number>{
 
     let set = new Set<number>();
@@ -65,13 +68,11 @@ function combinatory(nums: number[]): Set<number>{
 
     return set;
 }
-
 const poppedArray = (nums: number[]): number[] => {
     nums.pop();
 
     return nums;
 }
-
 const robber = () => {
     
     return function robberMain(nums: number[]): Set<number> {
@@ -87,14 +88,62 @@ const robber = () => {
         return unionSet;
     }
 };
+//-----------------------------------------------------------------
+function sumValuesFromMap(map: {}){
+    let result = 0;
 
+    for (const key in map) {
+        result += map[key];
+    }
+
+    return result
+}
+function branch(map: {}, ref: number, acarreo: Set<number>){
+    console.log(map);
+    const mapS = {...map};
+
+    if(mapS[ref+1]){
+        delete map[ref+1];
+    }
+
+    else if(map[ref+2]) {
+        branch(mapS, ref+2, acarreo);
+
+        if(map[ref+3]) {
+            branch(mapS, ref+3, acarreo);
+        }
+        else {
+            acarreo.add( sumValuesFromMap(map) );
+            return;
+        }
+    }
+    else {
+        acarreo.add( sumValuesFromMap(map) );
+        return;
+    }
+
+}
 
 function robberA(nums: number[]) {
     
-    if(nums.length>2){
-        if(nums[])
-    }
+    const map1 = {};
+    const map2 = {};
+    const acarreo: Set<number> = new Set<number>();
 
+    for(let i=0; i<nums.length; i++){
+        map1[i] = nums[i]; // Converting array to hashtable, Ai: ai
+        map2[i] = nums[i]; // Converting array to hashtable, Ai: ai
+    }
+    delete map1[1];
+    delete map2[0];
+
+    let ref = 0;
+    branch(map1, ref, acarreo);
+
+    ref = 1;
+    branch(map2, ref, acarreo);
+
+    console.log(acarreo);
 }
 
 function main(){
@@ -102,12 +151,15 @@ function main(){
     //  0 <= nums[i] <= 400
     // const nums: number[] = [1,2,3,1];
     //  const nums: number[] = [2,1,1,2];
-    const nums: number[] = [2,7,9,3,1];
+    // const nums: number[] = [2,7,9,3,1];
+    const nums: number[] = [0,1,2,3];
 
     // const output: Set<number> = combinatory(nums);
     // console.log(output);
     // const robberCls = robber();
     // console.log( "Set: ", robberCls(nums) );
+
+    robberA(nums);
 }
 
 main();
