@@ -8,6 +8,37 @@ if two adjacent houses were broken into on the same night.
 Given an integer array nums representing the amount of money of each house, 
 return the maximum amount of money you can rob tonight without alerting the police.
 */
+
+// Function to calculate non-combinatory but linear sums over nums
+var rob = function(nums) {
+    
+    let sums = [];
+    let partial = 0;
+    let index = 0;
+
+    while(nums.length > 0){
+        if(nums[index]){
+            partial += nums[index];
+            index += 2;
+        } else {
+            sums.push(partial);
+            partial = 0;
+            nums.shift();
+            index = 0;
+        }
+    }
+
+    let max = -Infinity;
+
+    for(let i=0; i<sums.length; i++){
+        if(sums[i] > max){
+            max = sums[i];
+        }
+    }
+
+    return max;
+};
+
 function combinatory(nums: number[]): Set<number>{
 
     let set = new Set<number>();
@@ -58,6 +89,14 @@ const robber = () => {
 };
 
 
+function robberA(nums: number[]) {
+    
+    if(nums.length>2){
+        if(nums[])
+    }
+
+}
+
 function main(){
     //  1 <= nums.length <= 100
     //  0 <= nums[i] <= 400
@@ -67,8 +106,8 @@ function main(){
 
     // const output: Set<number> = combinatory(nums);
     // console.log(output);
-    const robberCls = robber();
-    console.log( "Set: ", robberCls(nums) );
+    // const robberCls = robber();
+    // console.log( "Set: ", robberCls(nums) );
 }
 
 main();
