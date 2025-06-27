@@ -95,36 +95,40 @@ function sumValuesFromMap(map: {}){
     for (const key in map) {
         result += map[key];
     }
-
+    
+    // console.log("MapSumValues: ", map);
+    // console.log("Result: ", result);
     return result
 }
 function branch(map: {}, ref: number, acarreo: Set<number>){
-    console.log(map);
+    // console.log("Map: ", map, ", ref: ", ref, ", acarreo: ", acarreo);
     const mapS = {...map};
 
     if(mapS[ref+1]){
-        delete map[ref+1];
+        delete mapS[ref+1];
     }
 
-    else if(map[ref+2]) {
-        branch(mapS, ref+2, acarreo);
+    if(mapS[ref+2] && mapS[ref+3]){
+        const mapS1 = {...mapS};
+        const mapS2 = {...mapS};
 
-        if(map[ref+3]) {
-            branch(mapS, ref+3, acarreo);
-        }
-        else {
-            acarreo.add( sumValuesFromMap(map) );
-            return;
-        }
+        delete mapS1[ref+2];
+        delete mapS2[ref+3];
+
+        branch(mapS1, ref+3, acarreo);
+        branch(mapS2, ref+2, acarreo);
+    }
+    else if(mapS[ref+2]){
+        branch(mapS, ref+2, acarreo);
     }
     else {
-        acarreo.add( sumValuesFromMap(map) );
-        return;
+        acarreo.add( sumValuesFromMap(mapS) );
+        return ;
     }
 
 }
 
-function robberA(nums: number[]) {
+function robberA(nums: number[]): number {
     
     const map1 = {};
     const map2 = {};
@@ -136,14 +140,17 @@ function robberA(nums: number[]) {
     }
     delete map1[1];
     delete map2[0];
+    // console.log("Maps: ",map1,map2);
 
-    let ref = 0;
-    branch(map1, ref, acarreo);
+    const ref1 = 0;
+    branch(map1, ref1, acarreo);
 
-    ref = 1;
-    branch(map2, ref, acarreo);
+    const ref2 = 1;
+    branch(map2, ref2, acarreo);
 
-    console.log(acarreo);
+    // console.log("Acarreo final: ", acarreo);
+    // console.log(Math.max(...acarreo));
+    return Math.max(...acarreo);
 }
 
 function main(){
@@ -151,15 +158,15 @@ function main(){
     //  0 <= nums[i] <= 400
     // const nums: number[] = [1,2,3,1];
     //  const nums: number[] = [2,1,1,2];
-    // const nums: number[] = [2,7,9,3,1];
-    const nums: number[] = [0,1,2,3];
+    const nums: number[] = [2,7,9,3,1];
+    // const nums: number[] = [0,1,2,3];
 
     // const output: Set<number> = combinatory(nums);
     // console.log(output);
     // const robberCls = robber();
     // console.log( "Set: ", robberCls(nums) );
 
-    robberA(nums);
+    const result:number = robberA(nums);
 }
 
 main();
