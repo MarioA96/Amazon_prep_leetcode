@@ -172,9 +172,10 @@ function greedyRob(nums: number[]){
 
 function main(){
     // const nums: number[] = [1,2,3,1];
-     const nums: number[] = [2,1,1,2];
+    // const nums: number[] = [2,1,1,2];
     // const nums: number[] = [2,7,9,3,1];
     // const nums: number[] = [0,1,2,3];
+    const nums: number[] = [3,6,12,7,9,11,4];
     // const nums:number[] = [
     //     155,44,52,58,250,225,109,118,211,73,137,96,137,89,174,
     //     66,134,26,25,205,239,85,146,73,55,6,122,196,128,50,61,
@@ -188,27 +189,44 @@ function main(){
     // console.log(counter);
 
     let len = nums.length;
-    const constraints = {};
-    let sum = 0;
-    let k = 0;
-    for(let j=0; j<nums.length; j++){
-        len = nums.length;
-        k=0;
-        sum=0;
-        while(len>0){
-            console.log("constraints.next= ", constraints.next, ", k+j: ", k+j);
-
-            if( constraints[k] ){
-                sum += nums[k]!;
-                constraints["next"] = (k+j)+1;
-                console.log("nums[",k,"]: ", nums[k], ", sum: ", sum);
-            }
     
-            k++;
-            len--;
+    let indexSkip = 1;
+    let basisSkip = 1; //-1 & +1
+    let indexCase = 0;
+    let condSkip = 0; // Si debe acceder a casos de pares o en impares (los saltos)
+    let sum = 0;
+    const sums: Set<number> = new Set<number>();
+    
+    //[3,6,12,7,9,11,4]
+    for(let k = 0; k<Math.ceil(len/2); k++){
+
+        for(let j=0; j<(Math.ceil(len/2)); j++){
+            sum += nums[k]!;
+            if((indexSkip+basisSkip)%2===0){
+                condSkip = 0;
+            }
+            else {
+                condSkip = 1;
+            }
+
+            for(let i=indexSkip; i<nums.length; i++){
+                if(i%2===condSkip){
+                    sum += nums[i]!;
+                    console.log("nums[",i,"]: ", nums[i]);
+                }
+            }
+
+            sums.add(sum);
+            console.log("k: ", k, ", j: ", j, ", sum: ", sum);
+            sum = 0;
+            indexSkip++;
         }
-        console.log("sum: ", sum, "\n");
+
+        indexSkip=1;
+        indexCase++;
     }
+
+    // console.log(", sums: ", sums);
 }
 
 main();
