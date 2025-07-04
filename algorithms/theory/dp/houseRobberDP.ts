@@ -79,12 +79,14 @@ function greedyRob(nums: number[]){
         ...
         si ya termino de dar la vuelta, de nuevo toma el primer elemento pero ahora empieza a sumar desde i+n
             suma los valores del arreglo solo evitando aquellos que no tengan vecinos de manera local
-            es decir, si i+5, no sumes (i+5)-1, ni (i+5)+1
+            es decir, si i+5, no sumes (i+n)-1, ni (i+n)+1
     */
+    //[3,6,12,7,9,11,4]
 
     //i=0
     // j=0
-    //[3,12,9,11]
+    // k=0, nums[k]=3
+    //[3,12,9,11,4]
     // j=1
     //[3,7,11]
     // j=2
@@ -127,9 +129,41 @@ function greedyRob(nums: number[]){
     //i=6
     // j=0
     //[4]
-    for(let i=0; i<nums.length-2; i++){
+    let len = 0;
+    let k = 0
+    const constraints = {
+        "next": Infinity
+    };
+    for(let i=0; i<nums.length; i++){
         for(let j=i; j<nums.length; j++){
-            sum += nums[j]!;
+            len = nums.length;
+            k = j;
+            constraints.next = Infinity;
+            
+            //[2,1,1,2]
+            //[2,1]
+            //[2,2]
+            //[1,2]
+            /*
+            i=0
+            j=0
+            k=0
+
+            next=Inf
+            
+            2 -> 3
+            
+            sum = 2+1
+            */
+            while(len>0){
+                if(!(constraints["next"]===(k))){
+                    sum += nums[k]!;
+                    constraints["next"] = k+1;
+                }
+
+                k++;
+                len--;
+            }
         }
         results.add(sum);
     }
@@ -138,20 +172,43 @@ function greedyRob(nums: number[]){
 
 function main(){
     // const nums: number[] = [1,2,3,1];
-    //  const nums: number[] = [2,1,1,2];
+     const nums: number[] = [2,1,1,2];
     // const nums: number[] = [2,7,9,3,1];
     // const nums: number[] = [0,1,2,3];
-    const nums:number[] = [
-        155,44,52,58,250,225,109,118,211,73,137,96,137,89,174,
-        66,134,26,25,205,239,85,146,73,55,6,122,196,128,50,61,
-        230,94,208,46,243,105,81,157,89,205,78,249,203,238,239,
-        217,212,241,242,157,79,133,66,36,165
-    ]
+    // const nums:number[] = [
+    //     155,44,52,58,250,225,109,118,211,73,137,96,137,89,174,
+    //     66,134,26,25,205,239,85,146,73,55,6,122,196,128,50,61,
+    //     230,94,208,46,243,105,81,157,89,205,78,249,203,238,239,
+    //     217,212,241,242,157,79,133,66,36,165
+    // ]
 
     // console.log(nums.length);
     // const result:number = robberA(nums);
     // console.log(result);
     // console.log(counter);
+
+    let len = nums.length;
+    const constraints = {};
+    let sum = 0;
+    let k = 0;
+    for(let j=0; j<nums.length; j++){
+        len = nums.length;
+        k=0;
+        sum=0;
+        while(len>0){
+            console.log("constraints.next= ", constraints.next, ", k+j: ", k+j);
+
+            if( constraints[k] ){
+                sum += nums[k]!;
+                constraints["next"] = (k+j)+1;
+                console.log("nums[",k,"]: ", nums[k], ", sum: ", sum);
+            }
+    
+            k++;
+            len--;
+        }
+        console.log("sum: ", sum, "\n");
+    }
 }
 
 main();
