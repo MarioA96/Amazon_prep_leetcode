@@ -175,13 +175,13 @@ function main(){
     // const nums: number[] = [2,1,1,2];
     // const nums: number[] = [2,7,9,3,1];
     // const nums: number[] = [0,1,2,3];
-    const nums: number[] = [3,6,12,7,9,11,4];
-    // const nums:number[] = [
-    //     155,44,52,58,250,225,109,118,211,73,137,96,137,89,174,
-    //     66,134,26,25,205,239,85,146,73,55,6,122,196,128,50,61,
-    //     230,94,208,46,243,105,81,157,89,205,78,249,203,238,239,
-    //     217,212,241,242,157,79,133,66,36,165
-    // ]
+    // const nums: number[] = [3,6,12,7,9,11,4];
+    const nums:number[] = [
+        155,44,52,58,250,225,109,118,211,73,137,96,137,89,174,
+        66,134,26,25,205,239,85,146,73,55,6,122,196,128,50,61,
+        230,94,208,46,243,105,81,157,89,205,78,249,203,238,239,
+        217,212,241,242,157,79,133,66,36,165
+    ]
 
     // console.log(nums.length);
     // const result:number = robberA(nums);
@@ -190,39 +190,38 @@ function main(){
 
     let len = nums.length;
     
-    let indexSkip = 1;
+    let indexSkip = 2; // A partir de que numero va a saltar la secuencia
     let basisSkip = 1; //-1 & +1
-    let indexCase = 0;
+    let indexCase = 0; // En que numero va a empezar a leer la secuencia
     let condSkip = 0; // Si debe acceder a casos de pares o en impares (los saltos)
     let sum = 0;
     const sums: Set<number> = new Set<number>();
     
     //[3,6,12,7,9,11,4]
-    for(let k = 0; k<Math.ceil(len/2); k++){
+    for(let k=0; k<Math.ceil(len/2); k++){
+        for(let j=indexCase; j<Math.ceil(len/2); j++){
+            sum += nums[indexCase]!;
 
-        for(let j=0; j<(Math.ceil(len/2)); j++){
-            sum += nums[k]!;
-            if((indexSkip+basisSkip)%2===0){
+            if((indexSkip+indexCase)%2===0){
                 condSkip = 0;
             }
             else {
                 condSkip = 1;
             }
-
-            for(let i=indexSkip; i<nums.length; i++){
+            for(let i=(indexSkip+indexCase); i<nums.length; i++){
                 if(i%2===condSkip){
                     sum += nums[i]!;
-                    console.log("nums[",i,"]: ", nums[i]);
+                    // console.log("nums[",i,"]: ", nums[i], ", indexSkip: ", indexSkip);
                 }
             }
 
             sums.add(sum);
-            console.log("k: ", k, ", j: ", j, ", sum: ", sum);
+            // console.log("k: ", k, ", j: ", j, ", sum: ", sum);
             sum = 0;
             indexSkip++;
         }
 
-        indexSkip=1;
+        indexSkip=2;
         indexCase++;
     }
 
