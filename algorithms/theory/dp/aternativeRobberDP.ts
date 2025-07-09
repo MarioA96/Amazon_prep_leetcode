@@ -2,12 +2,16 @@ function rob(nums: number[]){
 
     //Implementacion alternativa para la solucion del problema Robber
     const set:Set<number> = new Set<number>();
-    const map: Map<string, number> = new Map<string, number>();
+    const map = {};
 
     for(let i=0; i<nums.length; i++){
-        map[i] = nums[i];
+        if(map[nums[i]]){
+            map[nums[i]] = [...map[nums[i]], i];
+        } else {
+            map[nums[i]] = [i];
+        }
     }
-    console.log(map);
+    
 
 }
 
