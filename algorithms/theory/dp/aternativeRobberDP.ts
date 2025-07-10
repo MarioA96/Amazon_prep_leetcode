@@ -1,8 +1,8 @@
 function rob(nums: number[]){
 
     //Implementacion alternativa para la solucion del problema Robber
-    const set:Set<number> = new Set<number>();
-    const map = {};
+    const map: Map<number, number[]> = new Map<number, number[]>(); //valor: [posiciones]
+    const set: Map<number[], number> = new Map<number[], number>(); //[posiciones]: suma
 
     for(let i=0; i<nums.length; i++){
         if(map[nums[i]]){
@@ -11,7 +11,7 @@ function rob(nums: number[]){
             map[nums[i]] = [i];
         }
     }
-    
+    console.log(map);
 
 }
 
