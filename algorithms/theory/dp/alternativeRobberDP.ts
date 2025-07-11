@@ -2,17 +2,55 @@ function rob(nums: number[]){
 
     //Implementacion alternativa para la solucion del problema Robber
     const map: Map<number, number[]> = new Map<number, number[]>(); //valor: [posiciones]
-    const set: Map<number[], number> = new Map<number[], number>(); //[posiciones]: suma
+    const set: [Set<number>, number][] = [[new Set<number>(), 0]]; //[posiciones]: suma
 
     for(let i=0; i<nums.length; i++){
-        if(map[nums[i]]){
-            map[nums[i]] = [...map[nums[i]], i];
-        } else {
-            map[nums[i]] = [i];
+        if(map.get(nums[i])){
+            map.get(nums[i])?.push(i);
+        }
+        else {
+            map.set(nums[i], [i]);
         }
     }
-    console.log(map.values());
+    const mappedEntries = [...map.entries()];
+    const sortedEntries = mappedEntries.sort((a, b) => b[0] - a[0]);
+    const sortedMap = new Map(sortedEntries);
 
+    for (const keyOfMap of sortedMap.keys()) {
+        if(sortedMap.get(keyOfMap)!.length===1){
+            if(set[0][0].size===0){
+                set[0][1] = keyOfMap;
+                set[0][0].add(sortedMap.get(keyOfMap).at(0));
+            }
+            else {
+                for(let j=0; j<set.length; j++){
+                    if(!set[j][0].has(sortedMap.get(keyOfMap).at(0)-1) && !set[j][0].has(sortedMap.get(keyOfMap).at(0)+1)){
+                        set[j][1] += keyOfMap;
+                        set[j][0].add(sortedMap.get(keyOfMap).at(0));
+                    }
+                    else if(!set[j+1]){ //No cumple la condicion de arriba y a parte no hay mas elementos
+                        const subSetPosition = new Set<number>();
+                        subSetPosition.add(sortedMap.get(keyOfMap).at(0));
+                        set[j+1] = [subSetPosition, keyOfMap]
+                    }
+                }
+            }
+        } 
+        // else {
+
+        // }
+    }
+    // console.log(set.entries());
+    // set.set([sortedMap.get(10).at(0)], 10);
+    // set.set([sortedMap.get(10).at(1)], 10);
+    // set.set([sortedMap.get(10).at(2)], 10);
+    // const s: [[number[],number]] = [[[], 0]];
+    // s[0][1] = 10;
+    // s[0][0].push(sortedMap.get(10).at(0));
+    // s[0][0].push(sortedMap.get(10).at(1));
+    // s[0][0].push(sortedMap.get(10).at(2));
+
+    console.table(set);
 }
 
 function main(){
@@ -24,3 +62,15 @@ function main(){
 }
 
 main();
+
+
+// for(let i=0; i<nums.length; i++){
+//     if(map[nums[i]]){
+//         map[nums[i]] = [...map[nums[i]], i];
+//     } else {
+//         map[nums[i]] = [i];
+        
+//     }
+// }
+// console.log({...map});
+    
