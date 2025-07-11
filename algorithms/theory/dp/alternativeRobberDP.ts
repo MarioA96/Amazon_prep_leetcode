@@ -11,7 +11,7 @@ function rob(nums: number[]){
             map[nums[i]] = [i];
         }
     }
-    console.log(map);
+    console.log(map.values());
 
 }
 
