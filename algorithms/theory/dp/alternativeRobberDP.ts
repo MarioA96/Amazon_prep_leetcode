@@ -23,16 +23,22 @@ function rob(nums: number[]){
                 set[0][0].add(sortedMap.get(keyOfMap).at(0));
             }
             else {
-                for(let j=0; j<set.length; j++){
+                let j:number = 0;
+                let condicion: boolean = true;
+
+                while(condicion && j<set.length){
                     if(!set[j][0].has(sortedMap.get(keyOfMap).at(0)-1) && !set[j][0].has(sortedMap.get(keyOfMap).at(0)+1)){
                         set[j][1] += keyOfMap;
                         set[j][0].add(sortedMap.get(keyOfMap).at(0));
+                        condicion = false;
                     }
                     else if(!set[j+1]){ //No cumple la condicion de arriba y a parte no hay mas elementos
                         const subSetPosition = new Set<number>();
                         subSetPosition.add(sortedMap.get(keyOfMap).at(0));
-                        set[j+1] = [subSetPosition, keyOfMap]
+                        set[j+1] = [subSetPosition, keyOfMap];
                     }
+
+                    j++;
                 }
             }
         } 
@@ -40,25 +46,27 @@ function rob(nums: number[]){
             const len = sortedMap.get(keyOfMap)!.length;
 
             for(let i=0; i<len; i++){
-                let arrayOfKeyMap: number[] = sortedMap.get(keyOfMap)!;
-
                 if(set[0][0].size===0){
                     set[0][1] = keyOfMap;
                     set[0][0].add(sortedMap.get(keyOfMap).at(i));
                 }
                 else {
-                    for(let j=0; j<set.length; j++){
+                    let j:number = 0;
+                    let condicion: boolean = true;
+
+                    while(condicion && j<set.length){
                         if(!set[j][0].has(sortedMap.get(keyOfMap).at(i)-1) && !set[j][0].has(sortedMap.get(keyOfMap).at(i)+1)){
                             set[j][1] += keyOfMap;
                             set[j][0].add(sortedMap.get(keyOfMap).at(i));
-                            continue;
+                            condicion = false;
                         }
                         else if(!set[j+1]){ //No cumple la condicion de arriba y a parte no hay mas elementos
                             const subSetPosition = new Set<number>();
                             subSetPosition.add(sortedMap.get(keyOfMap).at(i));
                             set[j+1] = [subSetPosition, keyOfMap];
-                            continue;
                         }
+
+                        j++;
                     }
                 }
             }
@@ -80,8 +88,8 @@ function rob(nums: number[]){
 
 function main(){
 
-    // const nums: number[] = [3,6,12,7,9,11,4];
-    const nums: number[] = [6,3,10,8,2,10,3,5,10,5,3];
+    const nums: number[] = [3,6,12,7,9,11,4];
+    // const nums: number[] = [6,3,10,8,2,10,3,5,10,5,3];
     rob(nums);
 
 }
