@@ -36,9 +36,34 @@ function rob(nums: number[]){
                 }
             }
         } 
-        // else {
+        else{
+            const len = sortedMap.get(keyOfMap)!.length;
 
-        // }
+            for(let i=0; i<len; i++){
+                let arrayOfKeyMap: number[] = sortedMap.get(keyOfMap)!;
+
+                if(set[0][0].size===0){
+                    set[0][1] = keyOfMap;
+                    set[0][0].add(sortedMap.get(keyOfMap).at(i));
+                }
+                else {
+                    for(let j=0; j<set.length; j++){
+                        if(!set[j][0].has(sortedMap.get(keyOfMap).at(i)-1) && !set[j][0].has(sortedMap.get(keyOfMap).at(i)+1)){
+                            set[j][1] += keyOfMap;
+                            set[j][0].add(sortedMap.get(keyOfMap).at(i));
+                            continue;
+                        }
+                        else if(!set[j+1]){ //No cumple la condicion de arriba y a parte no hay mas elementos
+                            const subSetPosition = new Set<number>();
+                            subSetPosition.add(sortedMap.get(keyOfMap).at(i));
+                            set[j+1] = [subSetPosition, keyOfMap];
+                            continue;
+                        }
+                    }
+                }
+            }
+
+        }
     }
     // console.log(set.entries());
     // set.set([sortedMap.get(10).at(0)], 10);
