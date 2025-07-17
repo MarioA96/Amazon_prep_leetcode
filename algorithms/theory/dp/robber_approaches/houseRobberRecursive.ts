@@ -2,7 +2,7 @@
 
 function houseRobber(): void {
     //[ak, ak-1, ..., a3, a2, a1, a0] -> [a0, a1, a2, ..., ak-1, ak]
-    const cache = {}
+    const cache = {};
     
     return function rob(nums: number[]): number{
         let len = nums.length;
@@ -12,12 +12,28 @@ function houseRobber(): void {
         if(len in cache){
             return cache[len];
         }else {
-            if(len===3){
-                cache[3] = nums[len-3]
-                return len;
-            } else {
-                cache[len] = fib(n-1) + fib(n-2);
-                return cache[n];
+            if(len===1){ //[len, pos]->[K, K-1]->[1,0]
+                cache[0] = [nums[len-1]];
+                return cache[0];
+            }
+            else if(len===2){ //[K-1, K-2]->[2,1]
+                cache[1] = [[nums[len-1]],[nums[len-2]]];
+                return cache[1];
+            }
+            else if(len===3){ //[K-2, K-3]->[3,2]
+                cache[2] = [[nums[len-3]+nums[len-1]],[nums[len-2]]];
+                return cache[2];
+            }
+            else if(len===4){ //[K-3, K-4]->[4,3]
+                cache[3] = [[nums[len-4]+cache[2]],[cache[3]]];
+                return cache[3];
+            }
+            else {
+                cache[len] = [
+                    [nums[len-1] + rob(nums.slice(0, len - 2))],
+                    []
+                ];
+                return cache[len-1];
             }
         }
     }
