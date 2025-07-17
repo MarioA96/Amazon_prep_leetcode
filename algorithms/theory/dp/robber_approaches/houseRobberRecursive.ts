@@ -1,20 +1,25 @@
-function houseRobber(nums: number[]): number {
 
-    let len: number = -1;
-    let posicion: number = -1;
-    let arrEstado = [len, posicion];
 
-    const estados = {
-        [[1,0]: []],
-    }
-
-    if(arrEstado[0]===1&&arrEstado[1]===0){
-        const set: Set<number> = new Set<number>();
-        set.add(nums[0]);
-        return set;
-    }
-    if(arrEstado[0]===1&&arrEstado[1]===0){
-        const set: Set<number> = new Set<number>();
+function houseRobber(): void {
+    //[ak, ak-1, ..., a3, a2, a1, a0] -> [a0, a1, a2, ..., ak-1, ak]
+    const cache = {}
+    
+    return function rob(nums: number[]): number{
+        let len = nums.length;
+        // 1: set.add(nums[len-1]),
+        // 2: set.add(nums[len-1]).add(nums[len-2]),
+        // 3: set.add(nums[len-3]+nums[len-1]).add(nums[len-2])
+        if(len in cache){
+            return cache[len];
+        }else {
+            if(len===3){
+                cache[3] = nums[len-3]
+                return len;
+            } else {
+                cache[len] = fib(n-1) + fib(n-2);
+                return cache[n];
+            }
+        }
     }
 
 }
