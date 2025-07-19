@@ -1,3 +1,19 @@
+function houseRobberDPIterative(nums: number[]): number{
+    let cache_1 = 0; // Máximo beneficio robando hasta la casa anterior
+    let cache_2 = 0; // Máximo beneficio robando hasta dos casas atrás
+
+    for (let num of nums) {
+        let current = Math.max(cache_1, cache_2 + num); // Decidir si robar esta casa o no basado en el Maximo obtenido
+        cache_2 = cache_1;
+        cache_1 = current;
+
+        console.log(current);
+    }
+
+    return cache_1; // Máximo beneficio al final
+}
+
+
 function houseRobber() {
     //[ak, ak-1, ..., a3, a2, a1, a0] -> [a0, a1, a2, ..., ak-1, ak]
     const cache: Map<number, number> = new Map<number, number>();
@@ -53,8 +69,10 @@ function main(){
         217,212,241,242,157,79,133,66,36,165
     ];
     
-    const solution = houseRobber();
-    console.log(solution(nums));
+    // const solution = houseRobber();
+    // console.log(solution(nums));
+
+    console.log(houseRobberDPIterative(nums));
 }
 
 main();
