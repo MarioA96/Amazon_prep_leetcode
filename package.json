@@ -1,0 +1,13 @@
+{
+  "name": "amazon_prep_leetcode",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "data-structure-typed": "^2.0.4"
+  }
+}
