@@ -10,7 +10,18 @@ function getSum(a: number, b: number): number {
     generate = a & b;
     propagate = a | b;
 
-    console.log("Generate: ", generate.toString(2), ", Propagate: ", propagate.toString(2));
+    let generateString = generate.toString(2);
+    let propagateString = propagate.toString(2);
+
+    let clas = [
+        0, 
+        generate>>1, 
+        (generate>>2)|(generate>>1)&(propagate>>2), 
+        (generate>>3)|(generate>>2)&(propagate>>3)|(generate>>1)&(propagate>>2)&(propagate>>3),
+        (generate>>4)|(generate>>3)&(propagate>>4)|(generate>>2)&(propagate>>3)&(propagate>>4)|(generate>>1)&(propagate>>2)&(propagate>>3)&(propagate>>4)
+    ]
+
+    console.log("Generate: ", generateString, ", Propagate: ", propagateString, "\nCLAs: ", clas);
 
     return 0;
 };
