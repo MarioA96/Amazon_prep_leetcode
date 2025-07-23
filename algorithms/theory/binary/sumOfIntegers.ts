@@ -15,10 +15,10 @@ function getSum(a: number, b: number): number {
 
     let clas = [
         0, 
-        generate>>1, 
-        (generate>>2)|(generate>>1)&(propagate>>2), 
-        (generate>>3)|(generate>>2)&(propagate>>3)|(generate>>1)&(propagate>>2)&(propagate>>3),
-        (generate>>4)|(generate>>3)&(propagate>>4)|(generate>>2)&(propagate>>3)&(propagate>>4)|(generate>>1)&(propagate>>2)&(propagate>>3)&(propagate>>4)
+        generate & 1, 
+        (generate & 2)|(generate & 1)&(propagate & 2), 
+        (generate & 4)|(generate & 2)&(propagate & 4)|(generate & 1)&(propagate & 2)&(propagate & 4),
+        (generate & 8)|(generate & 4)&(propagate & 8)|(generate & 2)&(propagate & 4)&(propagate & 8)|(generate & 1)&(propagate & 2)&(propagate & 4)&(propagate & 8)
     ]
 
     console.log("Generate: ", generateString, ", Propagate: ", propagateString, "\nCLAs: ", clas);
