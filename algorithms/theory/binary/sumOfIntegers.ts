@@ -19,9 +19,15 @@ function getSum(a: number, b: number): number {
         (generate & 2)|(generate & 1)&(propagate & 2), 
         (generate & 4)|(generate & 2)&(propagate & 4)|(generate & 1)&(propagate & 2)&(propagate & 4),
         (generate & 8)|(generate & 4)&(propagate & 8)|(generate & 2)&(propagate & 4)&(propagate & 8)|(generate & 1)&(propagate & 2)&(propagate & 4)&(propagate & 8)
-    ]
+    ];
 
-    console.log("Generate: ", generateString, ", Propagate: ", propagateString, "\nCLAs: ", clas);
+    let CLA = 0;
+    for(let i=0; i<5; i++){
+        CLA |= clas[i]!;
+    }
+
+    let sum = (a ^ b) | CLA;
+    console.log("Generate: ", generateString, ", Propagate: ", propagateString, "\nCLAs: ", clas, ", CLA: ", CLA, "\nSum: ", sum);
 
     return 0;
 };
