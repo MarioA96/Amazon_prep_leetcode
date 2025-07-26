@@ -13,7 +13,7 @@ Examples:
     Output: [8,9,9,9,0,0,0,1]
 */
 // Definition for singly-linked list.
-class ListNode {
+class Node {
     val: number
     next: ListNode | null
     constructor(val?: number, next?: ListNode | null) {
@@ -21,12 +21,40 @@ class ListNode {
         this.next = (next===undefined ? null : next)
     }
 }
-//
+class ListNode {
+    private head: Node;
+    private tail: Node;
+    private length: number;
+
+    constructor(_value: any){
+        this.head = new Node();
+        this.tail = this.head;
+        this.length = 1;
+    }
+
+    appendListFromArray();
+}
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
     
+    
+
 };
 
 function main(){
+
+    const arrayL1 = [2,1,5,1];
+    const l1 = new ListNode(3);
+    // arrayL1.forEach(element => {
+    //     l1.next = new ListNode(element);
+    // });
+
+    const arrayL2 = [1,3,1,5];
+    const l2 = new ListNode(2);
+    arrayL2.forEach(element => {
+        l2.next = new ListNode(element);
+    });
+
+    console.log("L1: ", l1, ", L2: ", l2);
 
 }
 
