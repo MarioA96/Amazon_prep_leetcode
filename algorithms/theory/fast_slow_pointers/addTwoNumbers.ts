@@ -31,28 +31,47 @@ class ListNode {
         this.tail = this.head;
         this.length = 1;
     }
-
-    appendListFromArray();
 }
+
+
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
     
-    
+    let carry = 0;
+
+    let c1 = l1;
+    let c2 = l2;
+
+    let l3 = {...l1};
+    let c3 = l3;
+
+    while( c1 !== null && c2 !== null ){
+        if(c1 === null){
+
+        }
+        else if(c2 === null){
+            
+        }
+
+        c3.val = (l1.val + l2.val + carry)%10
+
+        if( (l1.val+l2.val) > 9){
+            carry = 1;
+        }
+
+        c1 = c1.next;
+        c2 = c2.next;
+
+        c3 = c3.next;
+    }
+
+    return null;
 
 };
 
 function main(){
 
-    const arrayL1 = [2,1,5,1];
-    const l1 = new ListNode(3);
-    // arrayL1.forEach(element => {
-    //     l1.next = new ListNode(element);
-    // });
-
-    const arrayL2 = [1,3,1,5];
-    const l2 = new ListNode(2);
-    arrayL2.forEach(element => {
-        l2.next = new ListNode(element);
-    });
+    const l1 = [2,1,5,1];
+    const l2 = [1,3,1,5];
 
     console.log("L1: ", l1, ", L2: ", l2);
 
