@@ -41,31 +41,54 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
     let c1 = l1;
     let c2 = l2;
 
-    let l3 = {...l1};
-    let c3 = l3;
+    let result = [];
 
     while( c1 !== null && c2 !== null ){
-        if(c1 === null){
 
+        if(c1 === null){
+            if(carry){
+                result.push( (c2.val + carry)%10 );
+                if( (c2.val+carry) > 9){
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+            } else {
+                result.push(c2.val);
+            }
+
+            c2 = c2.next;
         }
         else if(c2 === null){
-            
+
+            if(carry){
+                result.push( (c1.val + carry)%10 );
+                if( (c1.val+carry) > 9){
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+            } else {
+                result.push(c1.val);
+            }
+
+            c1 = c1.next;
         }
+        else {
+            result.push( (c1.val + c2.val + carry)%10 );
 
-        c3.val = (l1.val + l2.val + carry)%10
+            if( (c1.val+c2.val) > 9){
+                carry = 1;
+            } else {
+                carry = 0;
+            }
 
-        if( (l1.val+l2.val) > 9){
-            carry = 1;
+            c1 = c1.next;
+            c2 = c2.next;
         }
-
-        c1 = c1.next;
-        c2 = c2.next;
-
-        c3 = c3.next;
     }
 
     return null;
-
 };
 
 function main(){
