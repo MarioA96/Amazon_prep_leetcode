@@ -15,15 +15,25 @@ Output: [0,0,9,0,0]
 
 function productExceptSelf(nums: number[]): number[] {
     
-    
+    const len = nums.length;
+    const results: number[] = new Array<number>(len);
+    results.fill(1);
 
-    return [];
+    for(let i=0; i<len; i++){
+        for(let j=0; j<len; j++){
+            if(i!==j){
+                results[i]! *= nums[j]!;
+            }
+        }
+    }
+
+    return results;
 };
 
 
 function main(){
 
-    const nums:number[] = [1,2,3,4];
+    const nums:number[] = [-1,1,0,-3,3]; //[0,0,9,0,0]
     const output: number[] = productExceptSelf(nums);
 
     console.log(output);
