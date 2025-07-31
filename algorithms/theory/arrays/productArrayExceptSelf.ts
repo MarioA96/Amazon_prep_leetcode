@@ -32,18 +32,28 @@ function productExceptSelfNaive(nums: number[]): number[] {
 
 function productExceptSelf2(nums: number[]): number[]{
     const len = nums.length;
-    const acumlativo1: number[] = Array<number>(len-1);
-    // const acumlativo2 = Array<number>(len);
+    const acumulativo1: number[] = Array<number>(len-1);
+    const acumulativo2 = Array<number>(len-1);
+    const results: number[] = Array<number>(len);
 
+    //Lectura de derecha a izquierda pero haciendo que la multiplicacion mas larga este al inicio
     for(let i=len-1; i>0; i--){
-        console.log("i: ", i);
         if(i===len-1){
-            acumlativo1[i-1] = nums[i]!;
+            acumulativo1[i-1] = nums[i]!;
         } else {
-            acumlativo1[i-1] = acumlativo1[i]!*nums[i]!;
+            acumulativo1[i-1] = acumulativo1[i]!*nums[i]!;
         }
     }
-    console.log(acumlativo1);
+    //Lectura de izquierda a derecha
+    for(let i=0; i<len-1; i++){
+        if(i===0){
+            acumulativo2[i] = nums[i]!;
+        } else {
+            acumulativo2[i] = acumulativo2[i-1]!*nums[i]!;
+        }
+    }
+
+    
 
     return [];
 }
