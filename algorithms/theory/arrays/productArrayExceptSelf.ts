@@ -13,7 +13,7 @@ Output: [0,0,9,0,0]
 */
 
 
-function productExceptSelf(nums: number[]): number[] {
+function productExceptSelfNaive(nums: number[]): number[] {
     
     const len = nums.length;
     const results: number[] = new Array<number>(len);
@@ -30,13 +30,21 @@ function productExceptSelf(nums: number[]): number[] {
     return results;
 };
 
+function productExceptSelf2(nums: number[]): number[]{
+
+
+    return [];
+}
+
 
 function main(){
 
     const nums:number[] = [-1,1,0,-3,3]; //[0,0,9,0,0]
-    const output: number[] = productExceptSelf(nums);
 
-    console.log(output);
+    const output1: number[] = productExceptSelfNaive(nums);
+    const output2: number[] = productExceptSelf2(nums);
+
+    console.log(output1);
 
 }
 
