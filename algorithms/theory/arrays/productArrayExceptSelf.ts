@@ -53,20 +53,28 @@ function productExceptSelf2(nums: number[]): number[]{
         }
     }
 
-    
+    for(let i=0; i<len; i++){
+        if(i===0){
+            results[i] = acumulativo1[i]!;
+        } else if(i===len-1){
+            results[i] = acumulativo2[i-1]!
+        } else {
+            results[i] = acumulativo1[i]! * acumulativo2[i-1]!;
+        }
+    }
 
-    return [];
+    return results;
 }
 
 
 function main(){
 
-    const nums:number[] = [1,2,3,4]; //[0,0,9,0,0]
+    const nums:number[] = [-1,1,0,-3,3]; //[0,0,9,0,0]
 
     // const output1: number[] = productExceptSelfNaive(nums);
     const output2: number[] = productExceptSelf2(nums);
 
-    // console.log(output1);
+    console.log(output2);
 
 }
 
