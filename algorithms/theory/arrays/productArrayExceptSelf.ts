@@ -31,7 +31,19 @@ function productExceptSelfNaive(nums: number[]): number[] {
 };
 
 function productExceptSelf2(nums: number[]): number[]{
+    const len = nums.length;
+    const acumlativo1: number[] = Array<number>(len-1);
+    // const acumlativo2 = Array<number>(len);
 
+    for(let i=len-1; i>0; i--){
+        console.log("i: ", i);
+        if(i===len-1){
+            acumlativo1[i-1] = nums[i]!;
+        } else {
+            acumlativo1[i-1] = acumlativo1[i]!*nums[i]!;
+        }
+    }
+    console.log(acumlativo1);
 
     return [];
 }
@@ -39,12 +51,12 @@ function productExceptSelf2(nums: number[]): number[]{
 
 function main(){
 
-    const nums:number[] = [-1,1,0,-3,3]; //[0,0,9,0,0]
+    const nums:number[] = [1,2,3,4]; //[0,0,9,0,0]
 
-    const output1: number[] = productExceptSelfNaive(nums);
+    // const output1: number[] = productExceptSelfNaive(nums);
     const output2: number[] = productExceptSelf2(nums);
 
-    console.log(output1);
+    // console.log(output1);
 
 }
 
