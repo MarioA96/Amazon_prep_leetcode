@@ -52,7 +52,7 @@ function productExceptSelf2(nums: number[]): number[]{
             acumulativo2[i] = acumulativo2[i-1]!*nums[i]!;
         }
     }
-
+    // Hacemos el producto en el nuevo arreglo de manera cruzada con los resultados previos
     for(let i=0; i<len; i++){
         if(i===0){
             results[i] = acumulativo1[i]!;
@@ -63,6 +63,7 @@ function productExceptSelf2(nums: number[]): number[]{
         }
     }
 
+    //O(3n)->O(n)
     return results;
 }
 
