@@ -67,15 +67,35 @@ function productExceptSelf2(nums: number[]): number[]{
     return results;
 }
 
+//Alternative implementation suggested approach to save memory in both Time complexity and Espace
+function productExceptSelfBest(nums: number[]): number[] {
+    const n = nums.length;
+    const result = new Array(n).fill(1);
+
+    // Primera pasada: productos de izquierda
+    for (let i = 1; i < n; i++) {
+        result[i] = result[i - 1] * nums[i - 1];
+    }
+
+    // Segunda pasada: multiplicar por productos de derecha
+    let right = 1;
+    for (let i = n - 1; i >= 0; i--) {
+        result[i] = result[i] * right;
+        right *= nums[i];
+    }
+
+    return result;
+}
+
 
 function main(){
 
     const nums:number[] = [-1,1,0,-3,3]; //[0,0,9,0,0]
 
     // const output1: number[] = productExceptSelfNaive(nums);
-    const output2: number[] = productExceptSelf2(nums);
+    const output: number[] = productExceptSelfBest(nums);
 
-    console.log(output2);
+    console.log(output);
 
 }
 
