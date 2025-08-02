@@ -56,3 +56,14 @@ function maxArea(height: number[]): number {
     console.log(maxArea);
     return 0;
 };
+
+function main(){
+
+    const input:number[] = [1,8,6,2,5,4,8,3,7];
+    const output:number = maxArea(input);
+
+    console.log(output);
+
+}
+
+main();
