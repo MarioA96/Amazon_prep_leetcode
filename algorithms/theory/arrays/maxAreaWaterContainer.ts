@@ -56,11 +56,12 @@ function maxArea(height: number[]): number {
         } else if(condIF){
             // Sino muevo el puntero2
             posIF--;
-        } else {
+        } else if(!condI0 && !condIF){
             // Sino debo buscar el numero mas grande de la izq o derecha
             let condBusqueda = true;
             let tempBase = 0;
             let noMoreElements = false;
+
             while(condBusqueda && !noMoreElements){
                 if(height[posI0]! > height[posIF]!){
                     posI0++;
@@ -75,10 +76,14 @@ function maxArea(height: number[]): number {
                     if(tempBase <= 0){
                         noMoreElements = true;
                         areMoreMaxArea = false;
+                    } else {
+                        condBusqueda = false;
                     }
                 }
             }
         }
+
+        // console.log(maxArea);
     }
 
     
@@ -87,9 +92,9 @@ function maxArea(height: number[]): number {
 
 function main(){
 
-    // const input:number[] = [1,8,6,2,5,4,8,3,7];
-    // const input:number[] = [1,1,1,1,1];
-    const input:number[] = [1,1]
+    // const input:number[] = [1,8,6,2,5,4,8,3,7]; // 49
+    const input:number[] = [1,3,2,5,25,24,5]; // 24
+    // const input:number[] = [1,1]; // 1
     const output:number = maxArea(input);
 
     console.log(output);
