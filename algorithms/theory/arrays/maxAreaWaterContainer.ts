@@ -90,6 +90,24 @@ function maxArea(height: number[]): number {
     return maxArea;
 };
 
+//Alternative and most efficient approach to problem
+function maxAreaAlternative(height: number[]): number {
+    let l = 0, r = height.length - 1;
+    let maxArea = 0;
+
+    while (l < r) {
+        const area = Math.min(height[l], height[r]) * (r - l);
+        maxArea = Math.max(maxArea, area);
+        if (height[l] < height[r]) {
+            l++;
+        } else {
+            r--;
+        }
+    }
+
+    return maxArea;
+};
+
 function main(){
 
     // const input:number[] = [1,8,6,2,5,4,8,3,7]; // 49
