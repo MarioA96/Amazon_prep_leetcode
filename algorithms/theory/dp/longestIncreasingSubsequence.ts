@@ -19,6 +19,7 @@ function lengthOfLIS(nums: number[]): number[] {
             return nums;
         }
     }
+
     const left = nums.slice(0, Math.ceil(len/2));
     const right = nums.slice(Math.ceil(len/2), len);
 
@@ -29,10 +30,18 @@ function lengthOfLIS(nums: number[]): number[] {
 
 };
 
-function lengthSub(arr1: number[], arr2: number[]): number[]{
+function lengthSub(leftArr: number[], rightArr: number[]): number[]{
 
+    let lenLeftArr = leftArr.length;
+    let lenRightArr = rightArr.length;
+
+    console.log("left: ", leftArr, ", right: ", rightArr);
     
+    while(lenLeftArr>0 && lenRightArr){
 
+    }
+    
+    return leftArr.concat(rightArr);
 }
 
 function main(){
