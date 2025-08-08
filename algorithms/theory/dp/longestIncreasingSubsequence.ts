@@ -68,18 +68,32 @@ function lengthOfLIS2(nums: number[]): number{
         }
     }
 
-    for(let i=0; i<stackedNums.length; i++){
-        map.forEach((value: number[], key: number) => {
-            let poppedStacked = stackedNums.pop();
-            let poppedValue = value.pop();
+    let lenStacked = stackedNums.length; //?
+    let wasPoppedStacked = false;
 
-            if(poppedStacked! < value.pop()!){
+    for(let i=0; i<lenStacked; i++){  //?
+        wasPoppedStacked = false;
+        let poppedStacked = stackedNums.pop();
+
+        map.forEach((value: number[]) => {
+            let poppedValue = value[ value.length-1 ];
+
+            if(poppedStacked! < poppedValue!){
                 value.push(poppedStacked!);
+                wasPoppedStacked = true;
             } else if(poppedStacked! > poppedValue!){
-                map.set();
+                wasPoppedStacked = false;
             }
         });
+
+        if(!wasPoppedStacked){
+            console.log("entra: ", poppedStacked);
+            let len = map.size;
+            map.set(len-1, [poppedStacked]);
+            console.log(map);
+        }
     }
+    console.log(map);
 
     return 0;
 }
@@ -87,6 +101,7 @@ function lengthOfLIS2(nums: number[]): number{
 function main(){
 
     const nums = [10,9,2,5,3,7,101,18];
+    // const nums = [7,7,7,7,7,7,7];
     const result = lengthOfLIS2(nums);
 
     console.log(result);
