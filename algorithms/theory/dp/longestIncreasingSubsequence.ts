@@ -44,10 +44,50 @@ function lengthSub(leftArr: number[], rightArr: number[]): number[]{
     return leftArr.concat(rightArr);
 }
 
+function lengthOfLIS2(nums: number[]): number{
+
+    const stackedNums: number[] = [];
+    const len = nums.length;
+
+    for(let i=0; i<len; i++){
+        if(nums.length>=3){
+            let el: number[] = nums.slice(0, 1);
+            let poppedEl = el.pop();
+            nums.splice(0,1);
+            stackedNums.push(poppedEl!);
+        }
+    }
+
+    const map: Map<number, number[]> = new Map<number, number[]>();
+    if(nums.length===2){
+        if(nums[0]!>nums[1]!){
+            map.set(0, [ nums[0]!] );
+            map.set(1, [ nums[1]!] );
+        }else {
+            map.set(0, [ nums[0]!, nums[1]! ]);
+        }
+    }
+
+    for(let i=0; i<stackedNums.length; i++){
+        map.forEach((value: number[], key: number) => {
+            let poppedStacked = stackedNums.pop();
+            let poppedValue = value.pop();
+
+            if(poppedStacked! < value.pop()!){
+                value.push(poppedStacked!);
+            } else if(poppedStacked! > poppedValue!){
+                map.set();
+            }
+        });
+    }
+
+    return 0;
+}
+
 function main(){
 
     const nums = [10,9,2,5,3,7,101,18];
-    const result = lengthOfLIS(nums);
+    const result = lengthOfLIS2(nums);
 
     console.log(result);
 
