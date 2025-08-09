@@ -120,12 +120,29 @@ function lengthOfLIS3(nums: number[]){
     return f(0, -1, nums, nums[nums.length-1]!);
 }
 
+function lengthOfLIS4(nums: number[]){
+
+    const table = new Array<number>(nums.length).fill(1);
+
+    for(let i=0; i<nums.length; i++){
+        for(let j=0; j<i; j++){
+            if(nums[i]!>nums[j]!){
+                if(table[j]!+1 > table[i]!){
+                    table[i] = table[j]!+1;
+                }
+            }
+        }
+    }
+
+    return Math.max(...table); 
+}
+
 function main(){
 
-    const nums = [10,9,2,5,3,7,101,18];
+    // const nums = [10,9,2,5,3,7,101,18];
     // const nums = [7,7,7,7,7,7,7];
-    // const nums = [0,1,0,3,2,3];
-    const result = lengthOfLIS3(nums);
+    const nums = [0,1,0,3,2,3];
+    const result = lengthOfLIS4(nums);
 
     console.log(result);
 
