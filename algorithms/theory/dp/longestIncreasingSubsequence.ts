@@ -102,12 +102,30 @@ function lengthOfLIS2(nums: number[]): number{
     return 0;
 }
 
+const f = (index: number, prev_index: number, nums: number[], n: number): number => {
+
+    if(index===n) return 0;
+
+    let len = 0+f(index+1, prev_index, nums, n);
+    if(prev_index === -1 || nums[index]! > nums[prev_index]!){
+        len = Math.max( len, 1+f(index+1, index, nums, n) );
+    }
+
+    return len;
+}
+
+function lengthOfLIS3(nums: number[]){
+
+
+    return f(0, -1, nums, nums[nums.length-1]!);
+}
+
 function main(){
 
-    // const nums = [10,9,2,5,3,7,101,18];
+    const nums = [10,9,2,5,3,7,101,18];
     // const nums = [7,7,7,7,7,7,7];
-    const nums = [0,1,0,3,2,3];
-    const result = lengthOfLIS2(nums);
+    // const nums = [0,1,0,3,2,3];
+    const result = lengthOfLIS3(nums);
 
     console.log(result);
 
