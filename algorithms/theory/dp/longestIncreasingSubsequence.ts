@@ -57,6 +57,7 @@ function lengthOfLIS2(nums: number[]): number{
             stackedNums.push(poppedEl!);
         }
     }
+    console.log(stackedNums);
 
     const map: Map<number, number[]> = new Map<number, number[]>();
     if(nums.length===2){
@@ -75,6 +76,7 @@ function lengthOfLIS2(nums: number[]): number{
         wasPoppedStacked = false;
         let poppedStacked = stackedNums.pop();
 
+        //TODO check wheter or not next element in stack in being set
         map.forEach((value: number[]) => {
             let poppedValue = value[ value.length-1 ];
 
@@ -86,22 +88,25 @@ function lengthOfLIS2(nums: number[]): number{
             }
         });
 
+        //TODO is not added the new key in map
         if(!wasPoppedStacked){
-            console.log("entra: ", poppedStacked);
+            // console.log("entra: ", poppedStacked);
             let len = map.size;
             map.set(len-1, [poppedStacked]);
-            console.log(map);
+            // console.log(map);
         }
     }
-    console.log(map);
+    // console.log(map);
 
+    // return map.get(0)?.length!;
     return 0;
 }
 
 function main(){
 
-    const nums = [10,9,2,5,3,7,101,18];
+    // const nums = [10,9,2,5,3,7,101,18];
     // const nums = [7,7,7,7,7,7,7];
+    const nums = [0,1,0,3,2,3];
     const result = lengthOfLIS2(nums);
 
     console.log(result);
