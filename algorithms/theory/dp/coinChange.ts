@@ -10,6 +10,8 @@ function coinChange(coins: number[], amount: number): number {
     
     // 1- El problema nos pide el minimo numero de monedas para dada una cantidad, lo que sugiere "optimizacion"
     // 2- Nos fijamos en la relacion recursiva: dp(amount) = min( dp(amount - coin_i) +1 ) para cada moneda coin_i
+    // 3- Usa un mapa memo[amount] para la memoization
+    // 4- Crea una tabla dp[amount+1], inicializa dp[0]=0, yllena dp[i]=min(dp[i-coin_j]+1)
 
     return -1;
 };
