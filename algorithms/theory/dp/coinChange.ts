@@ -8,6 +8,8 @@ You may assume that you have an infinite number of each kind of coin.
 
 function coinChange(coins: number[], amount: number): number {
     
+    // 1- El problema nos pide el minimo numero de monedas para dada una cantidad, lo que sugiere "optimizacion"
+    // 2- Nos fijamos en la relacion recursiva: dp(amount) = min( dp(amount - coin_i) +1 ) para cada moneda coin_i
 
     return -1;
 };
@@ -19,6 +21,7 @@ function main(){
 
     const result = coinChange(coins, amount);
 
+    console.log(result);
 }
 
 main();
