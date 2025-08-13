@@ -6,7 +6,7 @@ If that amount of money cannot be made up by any combination of the coins, retur
 You may assume that you have an infinite number of each kind of coin.
 */
 
-function coinChange(coins: number[], amount: number): number {
+function coinChange() {
     
     // 1- El problema nos pide el minimo numero de monedas para dada una cantidad, lo que sugiere "optimizacion"
     // 2- Nos fijamos en la relacion recursiva: dp(amount) = min( dp(amount - coin_i) +1 ) para cada moneda coin_i
@@ -20,22 +20,28 @@ function coinChange(coins: number[], amount: number): number {
     // 5- Simula para amount=11, coins=[1,2,5] para verificar que dp[11]=3 (5+5+1)
     const memo: Map<string,number> = new Map<string,number>();
 
-    return function dp(coins: number[], amount: number, memo: Map<string,number>): number {
+    return function DP(coins: number[], amount: number): number {
         if(amount===0){
             return 0;
         }
         if(amount<0){
-            return -1;
+            return Infinity;
         }
     
         if(amount in memo){
             return memo[amount];
         }
     
-        minimum = Infinity;
+        let minimum = Infinity;
         coins.forEach(coin => {
-            let result = dp(amount-coin, )
+            let result = DP(coins, amount-coin, memo);
+            if(result !== Infinity){
+                minimum = Math.min(minimum, result+1);
+            }
         });
+
+        memo[amount] = minimum;
+        return minimum;
     }
 };
 
@@ -44,9 +50,9 @@ function main(){
     const coins: number[] = [1,2,5];
     const amount: number = 11;
 
-    const result = coinChange(coins, amount);
+    const dp = coinChange();
 
-    console.log(result);
+    console.log(dp(coins, amount));
 }
 
 main();
