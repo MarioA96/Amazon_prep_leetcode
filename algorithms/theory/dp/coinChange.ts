@@ -6,7 +6,7 @@ If that amount of money cannot be made up by any combination of the coins, retur
 You may assume that you have an infinite number of each kind of coin.
 */
 
-function coinChange() {
+function coinChange(coins: number[], amount: number) {
     
     // 1- El problema nos pide el minimo numero de monedas para dada una cantidad, lo que sugiere "optimizacion"
     // 2- Nos fijamos en la relacion recursiva: dp(amount) = min( dp(amount - coin_i) +1 ) para cada moneda coin_i
@@ -19,40 +19,46 @@ function coinChange() {
     // 5- Optimiza espacio usando un arreglo 1D en lugar de 2D si solo usa monedas fijas
     // 5- Simula para amount=11, coins=[1,2,5] para verificar que dp[11]=3 (5+5+1)
     const memo: Map<string,number> = new Map<string,number>();
-
-    return function DP(coins: number[], amount: number): number {
-        if(amount===0){
-            return 0;
-        }
-        if(amount<0){
-            return Infinity;
-        }
+    const result = DP(coins, amount, memo);
     
-        if(amount in memo){
-            return memo[amount];
-        }
-    
-        let minimum = Infinity;
-        coins.forEach(coin => {
-            let result = DP(coins, amount-coin, memo);
-            if(result !== Infinity){
-                minimum = Math.min(minimum, result+1);
-            }
-        });
-
-        memo[amount] = minimum;
-        return minimum;
+    if(result === Infinity){
+        return -1;
     }
+    return result;
 };
+
+function DP(coins: number[], amount: number, memo: Map<string, number>): number {
+    if(amount===0){
+        return 0;
+    }
+    if(amount<0){
+        return Infinity;
+    }
+    if(amount in memo){
+        return memo[amount];
+    }
+
+    let minimum = Infinity;
+
+    coins.forEach(coin => {
+        let result = DP(coins, amount-coin, memo);
+        if(result !== Infinity){
+            minimum = Math.min(minimum, result+1);
+        }
+    });
+
+    memo[amount] = minimum;
+    return minimum;
+}
 
 function main(){
 
-    const coins: number[] = [1,2,5];
-    const amount: number = 11;
+    const coins: number[] = [2];
+    const amount: number = 3;
 
-    const dp = coinChange();
+    const dp = coinChange(coins, amount);
 
-    console.log(dp(coins, amount));
+    console.log(dp);
 }
 
 main();
