@@ -7,11 +7,16 @@ Note that the same word in the dictionary may be reused multiple times in the se
 
 function wordBreak(s: string, wordDict: string[]): boolean {
     
+
+    return false;
 };
 
 function main(){
 
-    const s = "leetcode", wordDict = ["leet","code"];
+    const s = "leetcode";
+    const wordDict = ["leet","code"];
+
+    const result = wordBreak(s, wordDict);
 
 }
 
