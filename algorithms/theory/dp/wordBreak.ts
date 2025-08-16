@@ -7,8 +7,6 @@ Note that the same word in the dictionary may be reused multiple times in the se
 
 function wordBreak(s: string, wordDict: string[]): boolean {
     
-    let minimum = Infinity;
-
     if(wordDict.length < 1){
         if(s.length===0){
             return true;
@@ -26,6 +24,9 @@ function wordBreak(s: string, wordDict: string[]): boolean {
             return false;
         }
     }
+
+    let minimum = Infinity;
+
     if(wordDict.length > 1){
         // let wordDictLeft = wordDict.slice(0, Math.ceil(wordDict.length / 2));
         // let wordDictRight = wordDict.slice(Math.ceil(wordDict.length / 2), wordDict.length);
@@ -35,7 +36,13 @@ function wordBreak(s: string, wordDict: string[]): boolean {
         //     wordBreak(s, wordDictLeft),
         //     wordBreak(s, wordDictRight)
         // ];
-        
+        wordDict.forEach(word => {
+            
+            let stringRaplaced = s.replace(word, "");
+            let value = wordBreak(stringRaplaced, wordDict);
+            minimum = Math.min(minimum, value);
+
+        });
     }
 
 
