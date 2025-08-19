@@ -8,12 +8,11 @@ Note that the same word in the dictionary may be reused multiple times in the se
 function wordBreak(s: string, wordDict: string[]): boolean {
     
     let memo: Map<number, boolean> = new Map<number, boolean>();
-    let i: number = 0;
+    let i: number = 0; // lo dejo para que se note de forma explicita debo de empezar desde un indice 0, segmento de la cadena desde 0
 
     let result = DP(s, wordDict, memo, i);
-    console.log(result);
 
-    return false;
+    return result;
 };
 
 function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number): boolean{
@@ -25,12 +24,16 @@ function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number
         return memo.get(i)!;
     }
 
-    wordDict.forEach( (word: string) => {
+    for(let word of wordDict){
         if(s.startsWith(word[i]!)){
-            
+            if( DP(s, wordDict, memo, i+word.length)===true ){
+                memo.set(i, true);
+                return true;
+            }
         }
-    });
+    };
 
+    memo.set(i, false);
     return false;
 }
 
@@ -40,6 +43,7 @@ function main(){
     const wordDict = ["leet","code"];
 
     const result = wordBreak(s, wordDict);
+    console.log(result);
 
 }
 
