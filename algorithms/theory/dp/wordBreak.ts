@@ -7,47 +7,32 @@ Note that the same word in the dictionary may be reused multiple times in the se
 
 function wordBreak(s: string, wordDict: string[]): boolean {
     
-    if(wordDict.length < 1){
-        if(s.length===0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    if(wordDict.length === 1){
-        let stringResult = s.replace(wordDict[0]!, ""); 
-        if(stringResult.length===0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    let memo: Map<number, boolean> = new Map<number, boolean>();
+    let i: number = 0;
 
-    let minimum = Infinity;
-
-    if(wordDict.length > 1){
-        // let wordDictLeft = wordDict.slice(0, Math.ceil(wordDict.length / 2));
-        // let wordDictRight = wordDict.slice(Math.ceil(wordDict.length / 2), wordDict.length);
-
-        // console.log("left: ", wordDictLeft, ", right: ", wordDictRight);
-        // let res = [
-        //     wordBreak(s, wordDictLeft),
-        //     wordBreak(s, wordDictRight)
-        // ];
-        wordDict.forEach(word => {
-            
-            let stringRaplaced = s.replace(word, "");
-            let value = wordBreak(stringRaplaced, wordDict);
-            minimum = Math.min(minimum, value);
-
-        });
-    }
-
+    let result = DP(s, wordDict, memo, i);
+    console.log(result);
 
     return false;
 };
+
+function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number): boolean{
+
+    if(i===s.length){
+        return true;
+    }
+    if(memo.has(i)){
+        return memo.get(i)!;
+    }
+
+    wordDict.forEach( (word: string) => {
+        if(s.startsWith(word[i]!)){
+            
+        }
+    });
+
+    return false;
+}
 
 function main(){
 
