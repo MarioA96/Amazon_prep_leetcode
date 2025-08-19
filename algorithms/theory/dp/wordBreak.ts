@@ -15,17 +15,18 @@ function wordBreak(s: string, wordDict: string[]): boolean {
     return result;
 };
 
+// f(i)=w∈Ds[i:i+∣w∣]=w​⋁​f(i+∣w∣)
 function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number): boolean{
 
     if(i===s.length){
-        return true;
+        return true; // caso base
     }
     if(memo.has(i)){
         return memo.get(i)!;
     }
 
     for(let word of wordDict){
-        if(s.startsWith(word[i]!)){
+        if(s.startsWith(word, i)){
             if( DP(s, wordDict, memo, i+word.length)===true ){
                 memo.set(i, true);
                 return true;
