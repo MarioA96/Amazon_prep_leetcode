@@ -15,7 +15,8 @@ function wordBreak(s: string, wordDict: string[]): boolean {
     return result;
 };
 
-// f(i)=w∈Ds[i:i+∣w∣]=w​⋁​f(i+∣w∣)
+// Forma generica de DP: f(S)=optd∈D(S)​{R(S,d)∘f(T(S,d))}
+// Transformacion para el problema: f(i)=w∈Ds[i:i+∣w∣]=w​⋁​f(i+∣w∣)
 function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number): boolean{
 
     if(i===s.length){
@@ -26,6 +27,7 @@ function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number
     }
 
     for(let word of wordDict){
+        // Verifica si s[i...] empieza con 'word'
         if(s.startsWith(word, i)){
             if( DP(s, wordDict, memo, i+word.length)===true ){
                 memo.set(i, true);
@@ -35,7 +37,7 @@ function DP(s: string, wordDict: string[], memo: Map<number, boolean>, i: number
     };
 
     memo.set(i, false);
-    return false;
+    return false; // ninguna opción funcionó
 }
 
 function main(){
