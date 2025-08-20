@@ -9,36 +9,41 @@ function combinationSum4(nums: number[], target: number): number{
 
     let num_soluciones = 0;
     let i: number = 0;
+    const memo: Map<number, number> = new Map<number, number>()
 
     if(target===0){
         return 1;
     }
-    
-    if(target>0){
-        num_soluciones = DP(nums, target, 0, i);
-    }
-
     if(target<0){
         return 0;
     }
-    console.log(num_soluciones===1?"Hay solucion":"No hay solucion");
+    if(target>0){
+        num_soluciones = DP(nums, target, memo, i);
+    }
+
+    console.log(memo.size);
 
     return 0;
 }
 
-function DP(nums: number[], target: number, M: number, i: number): number{
+function DP(nums: number[], target: number, memo: Map<number,number>, i: number): number{
 
-    if( (target-(M*nums[0]!)===0) ){
+    if(memo.has(i)){
+        return memo.get(i)!;
+    }
+    target = target - nums[i]!;
+
+    if(target<0){
+        return 0;
+    }
+    if(target===0){
+        memo.set(i,1);
         return 1;
     }
-    
-    if( target-(M*nums[0]!) > 0 ){
-        let result = DP(nums, target, M+1, i);
-        return result;
-    }
-
-    if( (target-(M*nums[0]!)<0) ){
-        return 0;
+    if( target>0 ){
+        for(i=0; i<nums.length; i++){
+            DP(nums, target, memo, i);
+        }
     }
 
     return 0;
@@ -46,8 +51,8 @@ function DP(nums: number[], target: number, M: number, i: number): number{
 
 function main(){
 
-    const nums = [2];
-    const target = 14;
+    const nums = [1,2,3];
+    const target = 7;
 
     const output = combinationSum4(nums, target);
 
