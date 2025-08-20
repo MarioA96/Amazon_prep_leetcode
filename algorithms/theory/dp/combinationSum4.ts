@@ -7,7 +7,6 @@ The test cases are generated so that the answer can fit in a 32-bit integer.
 
 function combinationSum4(nums: number[], target: number): number{
 
-    let num_soluciones = 0;
     let i: number = 0;
     const memo: Map<number, number> = new Map<number, number>()
 
@@ -18,12 +17,10 @@ function combinationSum4(nums: number[], target: number): number{
         return 0;
     }
     if(target>0){
-        num_soluciones = DP(nums, target, memo, i);
+        DP(nums, target, memo, i);
     }
 
-    console.log(memo.size);
-
-    return 0;
+    return memo.size;
 }
 
 function DP(nums: number[], target: number, memo: Map<number,number>, i: number): number{
@@ -31,17 +28,18 @@ function DP(nums: number[], target: number, memo: Map<number,number>, i: number)
     if(memo.has(i)){
         return memo.get(i)!;
     }
-    target = target - nums[i]!;
+    
+    for(i=0; i<nums.length; i++){
+        target = target - nums[i]!;
 
-    if(target<0){
-        return 0;
-    }
-    if(target===0){
-        memo.set(i,1);
-        return 1;
-    }
-    if( target>0 ){
-        for(i=0; i<nums.length; i++){
+        if(target<0){
+            return 0;
+        }
+        if(target===0){
+            memo.set(i,1);
+            return 1;
+        }
+        if( target>0 ){
             DP(nums, target, memo, i);
         }
     }
