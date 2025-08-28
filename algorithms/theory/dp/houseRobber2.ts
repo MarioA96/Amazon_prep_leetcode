@@ -47,6 +47,7 @@ function robMemoization(nums: number[]): number{
 function robTabulation(nums: number[]): number{
     const len = nums.length;
     
+    // Caso trivial
     if(len === 1){
         return nums[0]!;
     }
@@ -63,12 +64,15 @@ function robLinear(nums: number[], start: number, end: number): number {
     let prev_i_1 = 0;  //f(i-1)
 
     for(let i=start; i<=end; i++) {
-        
+        // Opción 1: tomar la casa i + mejor resultado hasta i-2
         let take = nums[i]! + prev_i_2;
+        // Opción 2: no tomar casa i → resultado hasta i-1
         let not_take = prev_i_1;
 
+        // Resultado óptimo hasta i
         let current = Math.max(take, not_take);
 
+        // Desplazamos la ventana
         prev_i_2 = prev_i_1;
         prev_i_1 = current;
     }
