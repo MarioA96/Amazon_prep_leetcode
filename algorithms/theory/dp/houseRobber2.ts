@@ -16,6 +16,7 @@ function robMemoization(nums: number[]): number{
     );
 
     function robLinear(nums: number[], start: number, end: number): number{
+
         const memo: Map<number, number> = new Map<number,number>();
 
         function dp(i: number): number{
@@ -43,35 +44,36 @@ function robMemoization(nums: number[]): number{
 }
 
 
-function robTabulation(nums: number[]): number {
-    
+function robTabulation(nums: number[]): number{
     const len = nums.length;
     
-    if(len===1){
+    if(len === 1){
         return nums[0]!;
     }
 
-    const case1 = robLinear(nums, 0, len-2);
-    const case2 = robLinear(nums, 1, len-1);
+    return Math.max(
+        robLinear(nums, 0, len-2),  // Robamos casas 0 ... n-2
+        robLinear(nums, 1, len-1)   // Robamos casas 1 ... n-1
+    );
+}
 
-    function robLinear(nums: number[], start: number, end: number): number{
+function robLinear(nums: number[], start: number, end: number): number {
+    
+    let prev_i_2 = 0;  //f(i-2)
+    let prev_i_1 = 0;  //f(i-1)
 
-        let prevRes_i_2 = 0;
-        let prevRes_i_1 = 0;
+    for(let i=start; i<=end; i++) {
+        
+        let take = nums[i]! + prev_i_2;
+        let not_take = prev_i_1;
 
-        for(let i=start; i<end; i++){
-            let take = nums[i]! + prevRes_i_2;
-            let notTake = prevRes_i_1;
-            let current = Math.max(take, notTake);
+        let current = Math.max(take, not_take);
 
-            prevRes_i_2 = prevRes_i_1;
-            prevRes_i_1 = current;
-        }
-
-        return prevRes_i_1;
+        prev_i_2 = prev_i_1;
+        prev_i_1 = current;
     }
 
-    return Math.max(case1,case2);
+    return prev_i_1;
 };
 
 function main(){
