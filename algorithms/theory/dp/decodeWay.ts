@@ -11,19 +11,23 @@ function numDecodings(s: string): number {
         if(s[0]! ==='0') return 0;
         else return 1;
     }
-    if(s.length===2){
-        if(s[0] === '0') return 0;
-        if(Number(s[0]) > 2) return 1;
-        if(s[0] === '1'){
-            if(s[1] === '0') return 1;
-            if(Number(s[1]) > 0) return 2;
-        }
-        if(s[0] === '2'){
-            if(s[1] === '0') return 1;
-            if(Number(s[1])>=1 && Number(s[1])<=6) return 2;
-            if(Number(s[1])>6) return 1;
-        }
+    // if(s.length===2){
+    //     if(s[0] === '0') return 0;
+    //     if(Number(s[0]) > 2) return 1;
+    //     if(s[0] === '1'){
+    //         if(s[1] === '0') return 1;
+    //         if(Number(s[1]) > 0) return 2;
+    //     }
+    //     if(s[0] === '2'){
+    //         if(s[1] === '0') return 1;
+    //         if(Number(s[1])>=1 && Number(s[1])<=6) return 2;
+    //         if(Number(s[1])>6) return 1;
+    //     }
+    // }
+    if(s.length > 2){
+
     }
+
 
     return 0;
 };
