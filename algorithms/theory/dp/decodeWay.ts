@@ -7,33 +7,38 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 
 function numDecodings(s: string): number {
     
-    if(s.length===1){
-        if(s[0]! ==='0') return 0;
-        else return 1;
-    }
-    // if(s.length===2){
-    //     if(s[0] === '0') return 0;
-    //     if(Number(s[0]) > 2) return 1;
-    //     if(s[0] === '1'){
-    //         if(s[1] === '0') return 1;
-    //         if(Number(s[1]) > 0) return 2;
-    //     }
-    //     if(s[0] === '2'){
-    //         if(s[1] === '0') return 1;
-    //         if(Number(s[1])>=1 && Number(s[1])<=6) return 2;
-    //         if(Number(s[1])>6) return 1;
-    //     }
-    // }
-    if(s.length > 2){
+    const n = s.length;
+    const memo: Map<number, number> = new Map<number,number>();
+
+    function dp(i: number): number{
+
+        if(i===n){
+            return 1;
+        }
+        if(memo.has(i)){
+            return memo.get(i)!;
+        }
+
+        if(s[i]==='0'){
+            return 0;
+        }
+
+        let ways = dp(i+1);
+
+        if( ((i+1)<n) && ( (s[i]==='1'||s[i]==='2') && s[i+1]!<='6' ) ){
+            ways += dp(i+2);
+        }
+
+        memo.set(i, ways);
+        return ways;
 
     }
 
-
-    return 0;
+    return dp(0);
 };
 
 function main(){
-    const word: string = "10";
+    const word: string = "12345";
     const output: number = numDecodings(word);
 
     console.log(output);
