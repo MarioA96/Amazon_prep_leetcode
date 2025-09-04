@@ -25,7 +25,7 @@ function numDecodings(s: string): number {
 
         let ways = dp(i+1);
 
-        if( ((i+1)<n) && ( (s[i]==='1'||s[i]==='2') && s[i+1]!<='6' ) ){
+        if( ((i+1)<n) && (s[i]==='1' || (s[i]==='2'&&s[i+1]!<='6'))  ){
             ways += dp(i+2);
         }
 
@@ -38,8 +38,8 @@ function numDecodings(s: string): number {
 };
 
 function main(){
-    const word: string = "12345";
-    const output: number = numDecodings(word);
+    const word: string = "2611055971756562";
+    const output: number = numDecodings(word); //4 no 2
 
     console.log(output);
 };
